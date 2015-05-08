@@ -1,20 +1,17 @@
-# server time zone
-time_zone: Pacific/Auckland
-
-#ssl_protocols: TLSv1,TLSv1.1,TLSv1.2
-ssl_protocols: TLSv1.2
-
-# tms server DNS
-server.domain.name: bp-nz-uat.tms.invenco.com
-
-ec2_user_accounts:
-  - xing
-  - kenk
-  - rajp
-  - stevenl
-
+ec2_server:
+  time_zone: Pacific/Auckland
+  domain.name: invenco-nz-stage.tms.invenco.com
+  user_accounts:
+    - xing
+    - kenk
+    - rajp
+    - stevenl
+    
 tms:
   tms_war: tms-webapp-1.3.12.war
+  
+  #ssl_protocols: TLSv1,TLSv1.1,TLSv1.2
+  ssl_protocols: TLSv1.2
     
   s3_bucket: bp-nz-uat-tmsfiles
 
