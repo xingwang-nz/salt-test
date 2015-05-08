@@ -29,4 +29,4 @@ users:
     gid: 5003
     groups:
       - sudo
-    ssh_pub_key_file: stevenl_id_rsa.pub
+    ssh_pub_key_file: stevenl_id_rsa.pub    

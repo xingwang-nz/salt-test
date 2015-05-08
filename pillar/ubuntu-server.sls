@@ -24,3 +24,4 @@ load_test_data: True
 #list of tms feature to be disabled
 disabled_features:
   - CONFIGURATION
+  - RELEASE
