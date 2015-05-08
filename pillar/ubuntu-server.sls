@@ -1,11 +1,3 @@
-tms_db_host: bpuatdb.cufbtanpnold.ap-southeast-2.rds.amazonaws.com
-tms_db_port: 5432
-tms_db_master_username: tmsRds
-tms_db_master_password: tms?1234S!
-tms_db_dbname: tms_server_db
-tms_db_username: tms
-tms_db_password: tms
-
 time_zone: Pacific/Auckland
 
 #ssl_protocols: TLSv1,TLSv1.1,TLSv1.2
