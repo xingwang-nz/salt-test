@@ -5,7 +5,7 @@ time_zone: Pacific/Auckland
 ssl_protocols: TLSv1.2
 
 # tms server DNS
-landing_page_domain: bp-nz-uat.tms.invenco.com
+server.domain.name: bp-nz-uat.tms.invenco.com
 
 ec2_user_accounts:
   - xing
