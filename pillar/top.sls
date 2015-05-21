@@ -1,5 +1,5 @@
 base:
   '*':
     - users
-  'ubuntu-server':
-    - ubuntu-server
+  'ubuntu-salt-minion-1':
+    - ubuntu-salt-minion-1

@@ -1,6 +1,6 @@
 ec2_server:
   time_zone: Pacific/Auckland
-  domain.name: invenco-nz-stage.tms.invenco.com
+  domain_name: invenco-nz-stage.tms.invenco.com
   user_accounts:
     - xing
     - kenk
