@@ -1,6 +1,7 @@
 ec2_server:
   time_zone: Pacific/Auckland
   domain_name: invenco-nz-stage.tms.invenco.com
+  install_auditd: True
   user_accounts:
     - xing
     - kenk
@@ -26,3 +27,4 @@ tms:
   disabled_features:
     - CONFIGURATION
     - RELEASE
+    
