@@ -91,4 +91,4 @@ tms-deployment:
     - url: http://localhost:8080/manager
     - timeout: 180
     - require:
-      - tomcat: wait-for-tomcatmanager
+      - tomcat: wait-for-tomcat-manager
