@@ -34,6 +34,18 @@ upload-tomcat-service-start-stop-script:
     - require:
       - archive: download-tomcat
       
+#add script deploment manager
+upload-tomcat-users-xml:
+  file.managed:
+    - name: {{ tomcat_home }}/conf/tomcat-users.xml
+    - source: salt://tomcat-files/tomcat-users.xml
+    - user: tomcat
+    - group: tomcat
+    - mode: 644
+    - template: jinja
+    - require:
+      - file: create-tomcat-link      
+      
 #change the tomcat folder owner to tomcat unless the owner was tomcat    
 change-owner-to-tomcat:
   file.directory:
@@ -55,9 +67,11 @@ tomcat-service:
     - enable: True
     - require:
       - file: upload-tomcat-service-start-stop-script
+      - file: upload-tomcat-users-xml
       - file: change-owner-to-tomcat
     - watch:
       - file: upload-tomcat-service-start-stop-script
+      - file: upload-tomcat-users-xml
 
 wait-for-tomcat_start:
   cmd.run:
