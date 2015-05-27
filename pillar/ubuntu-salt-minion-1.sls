@@ -9,7 +9,7 @@ ec2_server:
     - stevenl
     
 tms:
-  tms_war: tms-webapp-1.3.12.war
+  tms_war: sdemo-1.1.0.war
   
   #ssl_protocols: TLSv1,TLSv1.1,TLSv1.2
   ssl_protocols: TLSv1.2
