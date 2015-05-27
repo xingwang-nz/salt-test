@@ -90,5 +90,5 @@ tms-deployment:
     - war: salt://deploy/{{ salt['pillar.get']('tms:tms_war') }}
     - url: http://localhost:8080/manager
     - timeout: 180
-    - require:
-      - tomcat: wait-for-tomcatmanager
+#    - require:
+#      - tomcat: wait-for-tomcatmanager
