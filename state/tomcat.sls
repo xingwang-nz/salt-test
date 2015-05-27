@@ -78,7 +78,7 @@ wait-for-tomcat_start:
     - name: sleep 10
           
 #start deployment
-wait-for-tomcatmanager:
+wait-for-tomcat-manager:
   tomcat.wait:
     - timeout: 300
     - require:
