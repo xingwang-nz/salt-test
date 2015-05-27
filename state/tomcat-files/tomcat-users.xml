@@ -6,5 +6,7 @@
 
     <role rolename="manager-script"/>
     <user username="{{ salt['pillar.get']('tomcat-manager:user') }}" password="{{ salt['pillar.get']('tomcat-manager:passwd') }}" roles="manager-script"/>
+    <role rolename="manager-gui"/>
+    <user username="tomcat" password="tomcat" roles="manager-gui"/>
 
 </tomcat-users>
