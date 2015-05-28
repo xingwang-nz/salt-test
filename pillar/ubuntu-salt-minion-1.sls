@@ -3,10 +3,14 @@ ec2_server:
   domain_name: invenco-nz-stage.tms.invenco.com
   install_auditd: True
   user_accounts:
-    - xing
-    - kenk
-    - rajp
-    - stevenl
+    xing:
+      is_sudo: True
+    kenk:
+      is_sudo: True
+    rajp:
+      is_sudo: false
+    stevenl:
+      is_sudo: false
     
 tms:
   tms_war: sdemo-1.1.0.war
