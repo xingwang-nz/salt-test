@@ -27,6 +27,7 @@ create-user-{{ username }}:
     - groups:
       - {{ username }}
       - tomcat
+      - users
       {% if details.get('is_sudo') == True %}
       - sudo
       {% endif %}
