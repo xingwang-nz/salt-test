@@ -12,7 +12,7 @@ create-tomcat-user:
     - require:
       - group: create-tomcat-group
       
-{% for username, details in salt['pillar.get']('ec2_server:user_accounts') %}
+{% for username, details in salt['pillar.get']('ec2_server:user_accounts').items() %}
 create-group-{{ username }}:
   group.present:
     - name: {{ username }}
