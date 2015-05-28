@@ -45,6 +45,13 @@ add-{{ username }}-no-password-in-sudoers:
       - user: create-user-{{ username }}          
 {% endif %}
 
+ssh-key-{{ username }}:
+  ssh_auth.present:
+    - user: {{ username }}
+    - source: salt://pub-keys/{{ username }}_id_rsa.pub
+    - require:
+      - user: create-user-{{ username }}
+
 {% endfor %}
       
       
