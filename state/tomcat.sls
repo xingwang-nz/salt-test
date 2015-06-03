@@ -2,6 +2,9 @@
 {% set tomcat_extracted_folder = '/usr/local/apache-tomcat-8.0.21' %}
 {% set tomcat_home = '/usr/local/tomcat' %}
 
+{% set id = salt['pillar.get']('id') %}
+{% set nginx_id = salt['pillar.get']('nginx_server_id') %}
+
 {% if id != nginx_id %}
 download-tomcat:
   archive.extracted:

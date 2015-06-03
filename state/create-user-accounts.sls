@@ -31,7 +31,7 @@ create-user-{{ username }}:
     - gid: {{ details.get('gid', '') }}
     - groups:
       - {{ username }}
-{% if is_nginx_server == False %}      
+{% if id != nginx_id %}       
       - tomcat
 {% endif %}      
       - users
