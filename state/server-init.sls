@@ -1,4 +1,4 @@
-{% from 'lib.sls' import is_nginx_server with context %}
+{% from 'lib.sls' import isNginxServer with context %}
 
 set-time-zone:
   timezone.system:
@@ -50,9 +50,9 @@ install-ntp:
   
 echo-is_nginx_server:
   cmd.run:
-    - name: echo {{ is_nginx_server }}
+    - name: echo {{ isNginxServer() }}
         
-{% if is_nginx_server == True %}
+{% if isNginxServer() == True %}
 include:
   - nginx
 {% endif %}    
