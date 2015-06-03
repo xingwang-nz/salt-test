@@ -1,8 +1,10 @@
 {% set id = salt['pillar.get']('id') %}
 {% set nginx_id = salt['pillar.get']('nginx_server_id') %}
 
+{% set nginx_conf_folder = '/etc/nginx' %}
 {% set tms_nginx_conf_filename = 'tms-nginx.conf' %}
-{% set tms_nginx_conf_file = '/etc/nginx/sites-available/' + tms_nginx_conf_filename %}
+{% set tms_nginx_conf_file = nginx_conf_folder + '/sites-available/' + tms_nginx_conf_filename %}
+{% set tms_nginx_conf_linkfile = nginx_conf_folder + '/sites-enabled/' + tms_nginx_conf_filename %}
 
 
 {% if id == nginx_id %} 
@@ -29,7 +31,7 @@ nginx-setup-config:
 
 create-tms-nginx-conf-link:
   file.symlink:
-    - name: {{ tms_nginx_conf_filename }}
+    - name: {{ tms_nginx_conf_linkfile }}
     - target: {{ tms_nginx_conf_file }}
     - file.exists:
       - name: {{ tms_nginx_conf_file }}
