@@ -1,5 +1,5 @@
-include:
-  - state-common
+{% set id = salt['pillar.get']('id') %}
+{% set nginx_id = salt['pillar.get']('nginx_server_id') %}
 
 set-time-zone:
   timezone.system:
@@ -49,7 +49,7 @@ install-ntp:
     - name: ntp
     - skip_suggestions: True
     
-{% if is_nginx_server == True %}
+{% if id == nginx_id %}
 include:
   - nginx
 {% endif %}    

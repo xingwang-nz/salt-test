@@ -2,10 +2,7 @@
 {% set tomcat_extracted_folder = '/usr/local/apache-tomcat-8.0.21' %}
 {% set tomcat_home = '/usr/local/tomcat' %}
 
-include:
-  - state-common
-  
-{% if is_nginx_server == False %}   
+{% if id != nginx_id %}
 download-tomcat:
   archive.extracted:
     - name: /usr/local/

@@ -1,7 +1,7 @@
-include:
-  - state-common
+{% set id = salt['pillar.get']('id') %}
+{% set nginx_id = salt['pillar.get']('nginx_server_id') %}
 
-{% if is_nginx_server == False %}  
+{% if id != nginx_id %}  
 create-tomcat-group:
   group.present:
     - name: tomcat

@@ -1,7 +1,7 @@
-include:
-  - state-common
-  
-{% if is_nginx_server == True %}
+{% set id = salt['pillar.get']('id') %}
+{% set nginx_id = salt['pillar.get']('nginx_server_id') %}
+
+{% if id == nginx_id %} 
 #install nginx
 install-nginx:
   pkg.installed:
