@@ -40,7 +40,9 @@ create-user-{{ username }}:
       {% endif %}
     - require:
       - group: create-group-{{ username }}
+{% if id != nginx_id %}      
       - group: create-tomcat-group
+{% endif %}      
 
 {% if details.get('is_sudo') == True %}
 add-{{ username }}-no-password-in-sudoers:

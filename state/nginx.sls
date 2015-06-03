@@ -16,8 +16,8 @@ nginx-remove-default-config:
 
 nginx-setup-config:
   file.managed:
-    - name: /etc/nginx/sites-available/tms-nginx-conf
-    - source: salt://nginx/tms-nginx-conf
+    - name: /etc/nginx/sites-available/tms-nginx.conf
+    - source: salt://nginx/tms-nginx.conf
     - mode: 644
     - template: jinja
     - require:
@@ -27,7 +27,7 @@ nginx-setup-config:
 nginx-server-certificate-key:
   file.managed:
     - name: /etc/nginx/ssl/server-key.pem
-    - source: salt://ssl/server-key.pem
+    - source: salt://keystore/server-key.pem
     - makedirs: True
     - mode: 400
     - require:
@@ -37,7 +37,7 @@ nginx-server-certificate-key:
 nginx-server-certificate:
   file.managed:
     - name: /etc/nginx/ssl/server-cert.pem;
-    - source: salt://ssl/server-cert.pem;
+    - source: salt://keystore/server-cert.pem;
     - makedirs: True
     - mode: 400
     - require:
