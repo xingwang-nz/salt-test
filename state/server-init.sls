@@ -49,7 +49,7 @@ install-ntp:
     - name: ntp
     - skip_suggestions: True
     
-{% if id == nginx_id %}
+{% if is_nginx_server == true %}
 include:
   - nginx
 {% endif %}    
