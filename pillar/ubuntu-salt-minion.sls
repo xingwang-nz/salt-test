@@ -20,7 +20,7 @@ ssl:
     - TLSv1
     - TLSv1.1
     - TLSv1.2
-    - SSLv2Hello
+#    - SSLv2Hello
     
 tms:
   tms_war: sdemo-1.1.0.war
