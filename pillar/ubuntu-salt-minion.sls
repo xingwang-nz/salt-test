@@ -5,12 +5,18 @@ ec2_server:
   user_accounts:
     xing:
       is_sudo: True
+#    kenk:
+#      is_sudo: True
+#    rajp:
+#      is_sudo: false
+#    stevenl:
+#      is_sudo: false
     
 tms:
   tms_war: sdemo-1.1.0.war
   
-  ssl_protocols: TLSv1,TLSv1.1,TLSv1.2
-  #ssl_protocols: TLSv1.2
+  #ssl_protocols: TLSv1,TLSv1.1,TLSv1.2
+  ssl_protocols: TLSv1.2
     
   s3_bucket: bp-nz-uat-tmsfiles
 
