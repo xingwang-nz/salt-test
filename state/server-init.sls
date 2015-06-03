@@ -47,7 +47,11 @@ install-ntp:
   pkg.installed:
     - name: ntp
     - skip_suggestions: True
-    
+  
+echo-is_nginx_server:
+  cmd.run:
+    - name: echo {{ is_nginx_server }}
+        
 {% if is_nginx_server == True %}
 include:
   - nginx
