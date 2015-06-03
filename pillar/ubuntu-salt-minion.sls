@@ -28,7 +28,7 @@ tms:
   #ssl_protocols: TLSv1,TLSv1.1,TLSv1.2
   ssl_protocols: TLSv1.2
     
-  s3_bucket: bp-nz-uat-tmsfiles
+  s3_bucket: invenco-nz-qa-tmsfiles-configuration-target
 
   #for site system, this is disabled
   enable_g6opt: True

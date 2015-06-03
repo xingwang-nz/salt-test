@@ -1,6 +1,10 @@
 {% set id = salt['pillar.get']('id') %}
 {% set nginx_id = salt['pillar.get']('nginx_server_id') %}
 
+{% set tms_nginx_conf_filename = 'tms-nginx.conf' %}
+{% set tms_nginx_conf_file = '/etc/nginx/sites-available/' + tms_nginx_conf_filename %}
+
+
 {% if id == nginx_id %} 
 #install nginx
 install-nginx:
@@ -16,12 +20,21 @@ nginx-remove-default-config:
 
 nginx-setup-config:
   file.managed:
-    - name: /etc/nginx/sites-available/tms-nginx.conf
+    - name: {{ tms_nginx_conf_file }}
     - source: salt://nginx/tms-nginx.conf
     - mode: 644
     - template: jinja
     - require:
       - pkg: install-nginx
+
+create-tms-nginx-conf-link:
+  file.symlink:
+    - name: {{ tms_nginx_conf_filename }}
+    - target: {{ tms_nginx_conf_file }}
+    - file.exists:
+      - name: {{ tms_nginx_conf_file }}
+    - require:
+      - file: nginx-setup-config
 
 #server private key      
 nginx-server-certificate-key:
@@ -51,6 +64,7 @@ nginx-service:
     - require:
       - pkg: install-nginx
       - file: nginx-setup-config
+      - file: create-tms-nginx-conf-link
       - file: nginx-server-certificate-key
       - file: nginx-server-certificate
     - watch:
