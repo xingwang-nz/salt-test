@@ -37,7 +37,7 @@ nginx-server-certificate-key:
 nginx-server-certificate:
   file.managed:
     - name: /etc/nginx/ssl/server-cert.pem;
-    - source: salt://keystore/server-cert.pem;
+    - source: salt://keystore/server-cert.pem
     - makedirs: True
     - mode: 400
     - require:
