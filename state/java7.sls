@@ -1,5 +1,9 @@
+include:
+  - state-common
+  
+{% if is_nginx_server == False %}  
 #this state file install jdk1.7
-# add PPA
+# add PPA  
 oracle-ppa:
   pkgrepo.managed:
     - humanname: WebUpd8 Oracle Java PPA repository
@@ -24,3 +28,4 @@ oracle-java7-installer:
     - installed
     - require:
       - pkgrepo: oracle-ppa
+{% endif %}      

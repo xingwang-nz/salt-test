@@ -1,7 +1,10 @@
 ec2_server:
   time_zone: Pacific/Auckland
-  domain_name: invenco-nz-stage.tms.invenco.com
-  install_auditd: True
+  tms_server_domain_name: invenco-nz-stage.tms.invenco.com
+  content_server_domain_name: 172.25.115.107
+  
+  nginx_server_id:  ubuntu-server-minion-2
+  
   user_accounts:
     xing:
       is_sudo: True
@@ -11,6 +14,13 @@ ec2_server:
 #      is_sudo: false
 #    stevenl:
 #      is_sudo: false
+
+ssl: 
+  protocols:
+    - TLSv1
+    - TLSv1.1
+    - TLSv1.2
+    - SSLv2Hello
     
 tms:
   tms_war: sdemo-1.1.0.war

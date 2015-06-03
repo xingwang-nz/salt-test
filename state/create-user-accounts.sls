@@ -1,3 +1,7 @@
+include:
+  - state-common
+
+{% if is_nginx_server == False %}  
 create-tomcat-group:
   group.present:
     - name: tomcat
@@ -11,6 +15,7 @@ create-tomcat-user:
     - shell: /usr/sbin/nologin
     - require:
       - group: create-tomcat-group
+{% endif %}
       
 {% for username, details in salt['pillar.get']('ec2_server:user_accounts').items() %}
 create-group-{{ username }}:
@@ -26,7 +31,9 @@ create-user-{{ username }}:
     - gid: {{ details.get('gid', '') }}
     - groups:
       - {{ username }}
+{% if is_nginx_server == False %}      
       - tomcat
+{% endif %}      
       - users
       {% if details.get('is_sudo') == True %}
       - sudo
