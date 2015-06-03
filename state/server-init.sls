@@ -1,6 +1,3 @@
-{% set id = salt['pillar.get']('id') %}
-{% set nginx_id = salt['pillar.get']('nginx_server_id') %}
-
 {% from 'lib.sls' import is_nginx_server with context %}
 
 set-time-zone:
@@ -51,7 +48,7 @@ install-ntp:
     - name: ntp
     - skip_suggestions: True
     
-{% if is_nginx_server == true %}
+{% if is_nginx_server == True %}
 include:
   - nginx
 {% endif %}    

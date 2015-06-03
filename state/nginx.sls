@@ -1,3 +1,5 @@
+{% from 'lib.sls' import is_nginx_server with context %}
+
 {% set id = salt['pillar.get']('id') %}
 {% set nginx_id = salt['pillar.get']('nginx_server_id') %}
 
@@ -7,7 +9,7 @@
 {% set tms_nginx_conf_linkfile = nginx_conf_folder + '/sites-enabled/' + tms_nginx_conf_filename %}
 
 
-{% if id == nginx_id %} 
+{% if is_nginx_server == True %}
 #install nginx
 install-nginx:
   pkg.installed:

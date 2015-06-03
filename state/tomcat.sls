@@ -1,11 +1,10 @@
-#this state file install tomcat, configure tomcat, create tomcat service and deploy tms  
+#this state file install tomcat, configure tomcat, create tomcat service and deploy tms
+{% from 'lib.sls' import is_nginx_server with context %}
+
 {% set tomcat_extracted_folder = '/usr/local/apache-tomcat-8.0.21' %}
 {% set tomcat_home = '/usr/local/tomcat' %}
 
-{% set id = salt['pillar.get']('id') %}
-{% set nginx_id = salt['pillar.get']('nginx_server_id') %}
-
-{% if id != nginx_id %}
+{% if is_nginx_server == False %}
 download-tomcat:
   archive.extracted:
     - name: /usr/local/

@@ -1,7 +1,6 @@
-{% set id = salt['pillar.get']('id') %}
-{% set nginx_id = salt['pillar.get']('nginx_server_id') %}
+{% from 'lib.sls' import is_nginx_server with context %}
 
-{% if id != nginx_id %}  
+{% if is_nginx_server == False %} 
 create-tomcat-group:
   group.present:
     - name: tomcat
@@ -31,7 +30,7 @@ create-user-{{ username }}:
     - gid: {{ details.get('gid', '') }}
     - groups:
       - {{ username }}
-{% if id != nginx_id %}       
+{% if is_nginx_server == False %}        
       - tomcat
 {% endif %}      
       - users
@@ -40,7 +39,7 @@ create-user-{{ username }}:
       {% endif %}
     - require:
       - group: create-group-{{ username }}
-{% if id != nginx_id %}      
+{% if is_nginx_server == False %}       
       - group: create-tomcat-group
 {% endif %}      
 
