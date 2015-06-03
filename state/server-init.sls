@@ -1,6 +1,8 @@
 {% set id = salt['pillar.get']('id') %}
 {% set nginx_id = salt['pillar.get']('nginx_server_id') %}
 
+{% from 'lib.sls' import is_nginx_server with context %}
+
 set-time-zone:
   timezone.system:
     - name: {{ salt['pillar.get']('ec2_server:time_zone') }}
