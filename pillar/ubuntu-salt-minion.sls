@@ -10,7 +10,7 @@ ec2_server:
       is_sudo: True
  
 tms_db:
-  host: bpuatdb.cufbtanpnold.ap-southeast-2.rds.amazonaws.com
+  host: test-db-host
   port: 5432
   dbname: tms_server_db
     
