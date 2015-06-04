@@ -4,7 +4,7 @@ ec2_server:
   content_server_domain_name: 172.25.115.107
   
   #nginx_server_id: ubuntu-server-minion-2
-  nginx_server_id:
+  #nginx_server_id:
   
   user_accounts:
     xing:
