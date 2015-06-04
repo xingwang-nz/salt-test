@@ -20,7 +20,7 @@ ssl:
 #    - TLSv1.1
     - TLSv1.2
 #    - SSLv2Hello
-  enable-sslv2hello: True
+  enable_sslv2hello: True
     
 tms:
   tms_war: sdemo-1.1.0.war
