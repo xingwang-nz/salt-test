@@ -2,7 +2,11 @@
 {% set nginx_id = salt['pillar.get']('ec2_server:nginx_server_id') %}
 
 {% macro isNginxServer() -%}
-  {%- if id == nginx_id -%}
+  {%- if nginx_id == None -%}
+    False
+  {%- elif nginx_id == '' -%}
+    False
+  {%- elif id == nginx_id -%}
     True
   {%- else -%}
     False
