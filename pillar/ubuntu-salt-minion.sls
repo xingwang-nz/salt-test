@@ -8,13 +8,16 @@ ec2_server:
   user_accounts:
     xing:
       is_sudo: True
-#    kenk:
-#      is_sudo: True
-#    rajp:
-#      is_sudo: false
-#    stevenl:
-#      is_sudo: false
 
+tms_db:
+  host: test_host_db
+  port: 5432
+  master_username: master
+  master_password: test_master_password
+  dbname: tms_server_db
+  username: tms
+  password: test_tms_password
+  
 ssl: 
   protocols:
     - TLSv1
