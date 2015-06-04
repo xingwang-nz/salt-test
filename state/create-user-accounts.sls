@@ -1,6 +1,6 @@
 {% import 'lib.sls' as lib %}
 
-{% if lib.isNginxServer() == False %}
+{% if lib.isNginxServer() == "True" %}
 create-tomcat-group:
   group.present:
     - name: tomcat
@@ -30,7 +30,7 @@ create-user-{{ username }}:
     - gid: {{ details.get('gid', '') }}
     - groups:
       - {{ username }}
-{% if lib.isNginxServer() == False %}        
+{% if lib.isNginxServer() == "False" %}        
       - tomcat
 {% endif %}      
       - users
@@ -39,7 +39,7 @@ create-user-{{ username }}:
       {% endif %}
     - require:
       - group: create-group-{{ username }}
-{% if lib.isNginxServer() == False %}       
+{% if lib.isNginxServer() == "False" %}       
       - group: create-tomcat-group
 {% endif %}      
 

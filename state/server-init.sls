@@ -3,7 +3,7 @@
 include:
   - server-common
 
-{% if lib.isNginxServer() == True %}
+{% if lib.isNginxServer() == "True" %}
 include:
   - nginx
 {% else %}

@@ -6,7 +6,7 @@
 {% set tms_nginx_conf_linkfile = nginx_conf_folder + '/sites-enabled/' + tms_nginx_conf_filename %}
 
 
-{% if lib.isNginxServer() == True %}
+{% if lib.isNginxServer() == "True" %}
 #install nginx
 install-nginx:
   pkg.installed:

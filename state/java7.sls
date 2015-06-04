@@ -1,7 +1,7 @@
 #this state file install jdk1.7
 {% import 'lib.sls' as lib %}
 
-{% if lib.isNginxServer() == False %}
+{% if lib.isNginxServer() == "False" %}
 # add PPA  
 oracle-ppa:
   pkgrepo.managed:
