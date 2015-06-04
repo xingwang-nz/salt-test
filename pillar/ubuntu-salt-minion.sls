@@ -25,9 +25,6 @@ ssl:
 tms:
   tms_war: sdemo-1.1.0.war
   
-  #ssl_protocols: TLSv1,TLSv1.1,TLSv1.2
-  ssl_protocols: TLSv1.2
-    
   s3_bucket: invenco-nz-qa-tmsfiles-configuration-target
 
   #for site system, this is disabled
