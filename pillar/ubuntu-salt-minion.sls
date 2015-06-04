@@ -8,7 +8,12 @@ ec2_server:
   user_accounts:
     xing:
       is_sudo: True
-  
+ 
+tms_db:
+  host: bpuatdb.cufbtanpnold.ap-southeast-2.rds.amazonaws.com
+  port: 5432
+  dbname: tms_server_db
+    
 ssl: 
   protocols:
     - TLSv1
