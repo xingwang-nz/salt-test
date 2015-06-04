@@ -1,4 +1,4 @@
-{% import 'lib.sls' as lib %}
+{% import 'lib.sls' as lib with context%}
 
 {% if lib.isNginxServer() == "False" %}
 create-tomcat-group:

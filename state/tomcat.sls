@@ -1,5 +1,5 @@
 #this state file install tomcat, configure tomcat, create tomcat service and deploy tms
-{% import 'lib.sls' as lib %}
+{% import 'lib.sls' as lib with context%}
 
 {% set tomcat_extracted_folder = '/usr/local/apache-tomcat-8.0.21' %}
 {% set tomcat_home = '/usr/local/tomcat' %}
@@ -13,9 +13,6 @@ download-tomcat:
     - source_hash: md5=7972dfc3a1e9b9a78738379f7e755a11
     - archive_format: tar
     - tar_options: v
-#    - user: root
-#    - group: root
-#    - mode: 775
     - if_missing: {{ tomcat_extracted_folder }}
      
 create-tomcat-link:

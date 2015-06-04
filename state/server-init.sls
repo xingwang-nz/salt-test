@@ -1,4 +1,4 @@
-{% import 'lib.sls' as lib %}
+{% import 'lib.sls' as lib with context%}
 
 include:
   - server-common

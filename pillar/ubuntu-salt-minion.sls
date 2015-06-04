@@ -8,15 +8,6 @@ ec2_server:
   user_accounts:
     xing:
       is_sudo: True
-
-tms_db:
-  host: test_host_db
-  port: 5432
-  master_username: master
-  master_password: test_master_password
-  dbname: tms_server_db
-  username: tms
-  password: test_tms_password
   
 ssl: 
   protocols:

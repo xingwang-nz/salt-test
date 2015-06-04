@@ -1,4 +1,4 @@
-{% import 'lib.sls' as lib %}
+{% import 'lib.sls' as lib with context%}
 
 {% set nginx_conf_folder = '/etc/nginx' %}
 {% set tms_nginx_conf_filename = 'tms-nginx.conf' %}
