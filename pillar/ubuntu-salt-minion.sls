@@ -3,8 +3,7 @@ ec2_server:
   tms_server_domain_name: invenco-nz-stage.tms.invenco.com
   content_server_domain_name: 172.25.115.107
   
-  #nginx_server_id: ubuntu-server-minion-2
-  #nginx_server_id:
+  nginx_server_id: ubuntu-server-minion-2
   
   user_accounts:
     xing:
