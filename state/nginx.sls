@@ -1,7 +1,4 @@
-{% from 'lib.sls' import is_nginx_server with context %}
-
-{% set id = salt['pillar.get']('id') %}
-{% set nginx_id = salt['pillar.get']('nginx_server_id') %}
+{% import 'lib.sls' as lib %}
 
 {% set nginx_conf_folder = '/etc/nginx' %}
 {% set tms_nginx_conf_filename = 'tms-nginx.conf' %}

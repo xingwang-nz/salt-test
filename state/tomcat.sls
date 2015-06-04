@@ -1,5 +1,5 @@
 #this state file install tomcat, configure tomcat, create tomcat service and deploy tms
-{% from 'lib.sls' import is_nginx_server with context %}
+{% import 'lib.sls' as lib %}
 
 {% set tomcat_extracted_folder = '/usr/local/apache-tomcat-8.0.21' %}
 {% set tomcat_home = '/usr/local/tomcat' %}
