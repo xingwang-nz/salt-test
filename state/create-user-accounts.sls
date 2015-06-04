@@ -1,6 +1,6 @@
 {% import 'lib.sls' as lib %}
 
-{% if lib.isNginxServer() == "True" %}
+{% if lib.isNginxServer() == "False" %}
 create-tomcat-group:
   group.present:
     - name: tomcat
