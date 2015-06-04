@@ -1,70 +1,28 @@
-{% from 'lib.sls' import isNginxServer with context %}
-{% set id = salt['pillar.get']('id') %}
-{% set nginx_id = salt['pillar.get']('nginx_server_id') %}
+{% import 'lib.sls' as lib %}
 
-set-time-zone:
-  timezone.system:
-    - name: {{ salt['pillar.get']('ec2_server:time_zone') }}
+include:
+  - server-common
 
-# install auditd    
-install-auditd:
-  pkg.installed:
-    - name: auditd
-    - skip_suggestions: True
-
-# configure audit rules to capture all commands  
-configure-audit-rules:
-  file.append:
-    - name: /etc/audit/audit.rules
-    - text: 
-      - "-a exit,always -F arch=b64 -S execve"
-      - "-a exit,always -F arch=b32 -S execve"
-    - require:
-      - pkg: install-auditd
-
-# set audit buffer to "-b 1024"
-set-audit-buffer:
-  cmd.run:
-    - name: sed -i 's/-b[ ][0-9]\+/-b 1024/' /etc/audit/audit.rules
-    - require:
-      - pkg: install-auditd    
-    - unless:
-      - grep "\-b 1024" /etc/audit/audit.rules 
-
-# start auditd service
-auditd-service:
-  service.running:
-    - name: auditd
-    - enable: True
-    - require:
-      - pkg: install-auditd
-      - file: configure-audit-rules
-    - watch:
-      - file: configure-audit-rules
-      - cmd: set-audit-buffer
-
-# install ntp for server time synchronisation
-# default minpoll=64s maxpoll=1024s(about 17minutes), expect time synchronization happends every 64 second ~ 17 minutes 
-install-ntp:
-  pkg.installed:
-    - name: ntp
-    - skip_suggestions: True
-  
-echo-is_nginx_server:
-  cmd.run:
-    - name: echo {{ isNginxServer() }}
-    
-echo-nginx-id:
-  cmd.run:
-    - name: echo {{ nginx_id }}
-    
-echo-id:
-  cmd.run:
-    - name: echo {{ id }}
-        
-        
-{% if isNginxServer() == True %}
+{% if lib.isNginxServer() == True %}
 include:
   - nginx
+{% else %}
+#add ppa for postgresql-client9.4:
+add-postgresql-repository:
+  file.managed:
+    - name: /etc/apt/sources.list.d/pgdg.list
+    - contents: deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg main
+
+add-pgdg-ppa-key:
+  cmd.run:
+    - name: wget -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
+    - unless: apt-key list | grep ACCC4CF8
+
+install-postgresql-client:
+  pkg.installed:
+    - name: postgresql-client-9.4
+    - skip_verify: True
+    - skip_suggestions: True
+    - refresh: True  
 {% endif %}    
     
