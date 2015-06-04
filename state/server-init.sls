@@ -2,11 +2,11 @@
 
 include:
   - server-common
-
 {% if lib.isNginxServer() == "True" %}
-include:
   - nginx
-{% else %}
+{% endif %}  
+
+{% if lib.isNginxServer() == "False" %}
 #add ppa for postgresql-client9.4:
 add-postgresql-repository:
   file.managed:
@@ -24,5 +24,5 @@ install-postgresql-client:
     - skip_verify: True
     - skip_suggestions: True
     - refresh: True  
-{% endif %}    
+{% endif %}
     
