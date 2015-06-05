@@ -17,7 +17,7 @@ tms_db:
 ssl: 
   protocols:
     - TLSv1
-#    - TLSv1.1
+    - TLSv1.1
     - TLSv1.2
 #    - SSLv2Hello
   enable_sslv2hello: True
