@@ -1,3 +1,3 @@
 echo-hello:
   cmd.run:
-    - name: echo "hello master branch"
+    - name: echo "hello dev branch"
