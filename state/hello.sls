@@ -1,3 +1,3 @@
 echo-hello:
   cmd.run:
-    - name: echo "hello from master branch"
+    - name: echo "{{ salt['pillar.get']('hello_message') }} master branch"
