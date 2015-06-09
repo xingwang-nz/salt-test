@@ -4,6 +4,7 @@
 {% set tms_nginx_conf_filename = 'tms-nginx.conf' %}
 {% set tms_nginx_conf_file = nginx_conf_folder + '/sites-available/' + tms_nginx_conf_filename %}
 {% set tms_nginx_conf_linkfile = nginx_conf_folder + '/sites-enabled/' + tms_nginx_conf_filename %}
+{% set tms_nginx_conf_html_root = '/usr/share/nginx/html' %}
 
 
 {% if lib.isNginxServer() == "True" %}
@@ -28,6 +29,15 @@ nginx-setup-config:
     - require:
       - pkg: install-nginx
 
+nginx-error-page:
+  file.managed:
+    - name: {{ tms_nginx_conf_html_root }}/503.html
+    - source: salt://nginx/503.html
+    - mode: 644
+    - template: jinja
+    - require:
+      - pkg: install-nginx
+      
 create-tms-nginx-conf-link:
   file.symlink:
     - name: {{ tms_nginx_conf_linkfile }}
@@ -40,8 +50,8 @@ create-tms-nginx-conf-link:
 #server private key      
 nginx-server-certificate-key:
   file.managed:
-    - name: /etc/nginx/ssl/server-key.pem
-    - source: salt://keystore/server-key.pem
+    - name: /etc/nginx/ssl/server.key
+    - source: salt://keystore/server.key
     - makedirs: True
     - mode: 400
     - require:
@@ -50,8 +60,8 @@ nginx-server-certificate-key:
  #server certificate      
 nginx-server-certificate:
   file.managed:
-    - name: /etc/nginx/ssl/server-cert.pem
-    - source: salt://keystore/server-cert.pem
+    - name: /etc/nginx/ssl/server-chain.crt
+    - source: salt://keystore/server-chain.crt
     - makedirs: True
     - mode: 400
     - require:
@@ -72,4 +82,6 @@ nginx-service:
       - file: nginx-setup-config
       - file: nginx-server-certificate-key
       - file: nginx-server-certificate
+      - file: nginx-error-page
+      
 {% endif %}
