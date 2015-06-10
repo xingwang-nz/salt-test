@@ -5,7 +5,8 @@ install-elasticsearch:
   pkg.installed:
     - sources:
       - elasticsearch: salt://logstash/elasticsearch-1.6.0.deb
-
+      
+#Remove Elasticsearch Public Access
 config-elasticsearch:
   file.append:
     - name: /etc/elasticsearch/elasticsearch.yml
