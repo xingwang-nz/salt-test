@@ -8,6 +8,8 @@ ec2_server:
   user_accounts:
     xing:
       is_sudo: True
+      
+hello_message: "hello from"      
  
 tms_db:
   host: test-db-host
