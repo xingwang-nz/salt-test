@@ -48,11 +48,3 @@ install-ntp:
     - name: ntp
     - skip_suggestions: True
   
-echo-server-role:
-  cmd.run:
-    - name: echo {{ lib.server_role }}
-    
-echo-minion-id:
-  cmd.run:
-    - name: echo {{ lib.id }}
-    
