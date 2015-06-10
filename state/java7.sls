@@ -1,7 +1,7 @@
 #this state file install jdk1.7
 {% import 'lib.sls' as lib %}
 
-{% if lib.isTmsServer() == "True" || lib.isLogstashServer() == "True" %}
+{% if lib.isTmsServer() == "True" or lib.isLogstashServer() == "True" %}
 # add PPA  
 oracle-ppa:
   pkgrepo.managed:
