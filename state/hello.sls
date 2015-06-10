@@ -1,3 +1,4 @@
+{% import 'lib.sls' as lib %}
 {% if lib.isTmsServer() == "True" or lib.isLogstashServer() == "True" %}
 echo-hello:
   cmd.run:
