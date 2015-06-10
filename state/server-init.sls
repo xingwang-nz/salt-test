@@ -6,7 +6,7 @@ include:
   - nginx
 {% elif lib.isTmsServer() == "True" %}
   - postgresql-client
-{% elseif lib.isLogstashServer() == "True" %}
+{% elif lib.isLogstashServer() == "True" %}
   - logstash
 {% endif %}
     
