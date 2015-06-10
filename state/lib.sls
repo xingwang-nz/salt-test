@@ -1,12 +1,24 @@
 {% set id = salt['grains.get']('id') %}
-{% set nginx_id = salt['pillar.get']('ec2_server:nginx_server_id') %}
+{% set server_role = salt['grains.get']('server_role') %}
 
 {% macro isNginxServer() -%}
-  {%- if nginx_id == None -%}
+  {%- if server_role == 'nginx-server' -%}
+    True
+  {%- else -%}
     False
-  {%- elif nginx_id == '' -%}
+  {%- endif -%}
+{%- endmacro %}
+
+{% macro isTmsServer() -%}
+  {%- if server_role == 'tms-server' -%}
+    True
+  {%- else -%}
     False
-  {%- elif id == nginx_id -%}
+  {%- endif -%}
+{%- endmacro %}
+
+{% macro isLogstashServer() -%}
+  {%- if server_role == 'logstash-server' -%}
     True
   {%- else -%}
     False
