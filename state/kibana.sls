@@ -18,6 +18,7 @@ create-kibana-link:
     - target: {{ kibana_extracted_folder }}
     - file.exists:
       - name: {{ kibana_extracted_folder }}
+    - force: true
     - require:
       - archive: download-kibana
 
