@@ -8,6 +8,7 @@ include:
   - postgresql-client
 {% elif lib.isLogstashServer() == "True" %}
   - elasticsearch
+  - apache-2-utils
   - nginx
   - kibana
 {% endif %}
