@@ -24,7 +24,7 @@ create-kibana-link:
 upload-kibana-deamon-script:
   file.managed:
     - name: /etc/init.d/kibana
-    - source: salt://kibana-files/kibana.sh
+    - source: salt://logstash-files/kibana.sh
     - user: root
     - group: root
     - mode: 755
@@ -35,6 +35,7 @@ config-kibana:
   file.managed:
     - name: {{ kibana_home }}/config/kibana.yml
     - source: salt://logstash-files/kibana.yml
+    - makedirs: True
     - template: jinja
     - require:
       - archive: download-kibana   
