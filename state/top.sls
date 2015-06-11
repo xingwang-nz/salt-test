@@ -5,20 +5,20 @@ base:
     - java7          
     - server-init
     - tomcat
-    - hello
+#    - hello
     
   'server_role:nginx-server':
     - match: grain
     - create-user-accounts    
     - server-init
-    - hello    
+#    - hello    
     
   'server_role:logstash-server':
     - match: grain
     - create-user-accounts
     - java7        
     - server-init
-    - hello    
+#    - hello    
 #dev:
 #  'ubuntu-salt-minion-2':
 #    - server-init
