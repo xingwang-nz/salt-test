@@ -18,10 +18,6 @@ config-logstash-lumberjack-input:
     - require:
       - pkg: install-logstash
 
-- salt://logstash-files/logstash-conf/out.conf
-      - salt://logstash-files/logstash-conf/syslog.conf
-      - salt://logstash-files/logstash-conf/tcp-input.conf
-            
 logstash-service:
   service.running:
     - name: logstash
