@@ -17,6 +17,7 @@ config-logstash:
       - salt://logstash-files/logstash-conf/syslog.conf
       - salt://logstash-files/logstash-conf/tcp-input.conf
     - mode: 644
+    - makedirs: True
     - template: jinja
     - require:
       - pkg: install-logstash
