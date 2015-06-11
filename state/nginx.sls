@@ -7,7 +7,7 @@
 {% set nginx_conf_html_root = '/usr/share/nginx/html' %}
 
 
-{% if lib.isNginxServer() == "True" or libisLogstashServer() == "True" %}
+{% if lib.isNginxServer() == "True" or lib.isLogstashServer() == "True" %}
 #install nginx
 install-nginx:
   pkg.installed:
