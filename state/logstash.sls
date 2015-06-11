@@ -8,7 +8,7 @@ install-logstash:
       - logstash: salt://logstash-files/logstash_1.5.0-1_all.deb
 
 #Configure Elasticsearch
-config-logstash-lumberjack-input:
+config-logstash:
   file.managed:
     - name: {{ logstash_conf_folder }}/logstash.conf
     - source: salt://logstash-files/logstash.conf
