@@ -4,17 +4,18 @@
 install-elasticsearch:
   pkg.installed:
     - sources:
-      - elasticsearch: salt://logstash/elasticsearch-1.6.0.deb
-      
-#Remove Elasticsearch Public Access
+      - elasticsearch: salt://logstash-files/elasticsearch-1.6.0.deb
+
+#Configure Elasticsearch
 config-elasticsearch:
-  file.append:
+  file.managed:
     - name: /etc/elasticsearch/elasticsearch.yml
-    - text: 
-      - "network.bind_host: localhost"
+    - source: salt://logstash-files/elasticsearch.yml
+    - mode: 644
+    - template: jinja
     - require:
       - pkg: install-elasticsearch
-            
+      
 elasticsearch-service:
   service.running:
     - name: elasticsearch

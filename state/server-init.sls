@@ -1,4 +1,4 @@
-{% import 'lib.sls' as lib with context%}
+{% import 'lib.sls' as lib with context %}
 
 include:
   - server-common
@@ -7,6 +7,8 @@ include:
 {% elif lib.isTmsServer() == "True" %}
   - postgresql-client
 {% elif lib.isLogstashServer() == "True" %}
-  - logstash
+  - elasticsearch
+  - nginx
+  - kibana
 {% endif %}
     

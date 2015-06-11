@@ -1,9 +1,5 @@
 #!/bin/sh
 #
-# /etc/init.d/kibana4 -- startup script for kibana4
-# bsmith@the408.com 2015-02-20; used elasticsearch init script as template
-# https://github.com/akabdog/scripts/edit/master/kibana4_init
-#
 ### BEGIN INIT INFO
 # Provides:          kibana4
 # Required-Start:    $network $remote_fs $named
@@ -14,14 +10,13 @@
 # Description:       Starts kibana4 using start-stop-daemon
 ### END INIT INFO
 
-#configure this with wherever you unpacked kibana:
-KIBANA_BIN=/opt/kibana/bin
+KIBANA_BIN=/usr/local/kibana/bin
 
 PID_FILE=/var/run/$NAME.pid
 PATH=/bin:/usr/bin:/sbin:/usr/sbin:$KIBANA_BIN
 DAEMON=$KIBANA_BIN/kibana
-NAME=kibana4
-DESC="Kibana4"
+NAME=kibana
+DESC="Kibana"
 
 if [ `id -u` -ne 0 ]; then
 	echo "You need root privileges to run this script"

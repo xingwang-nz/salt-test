@@ -1,13 +1,13 @@
 {% import 'lib.sls' as lib with context %}
 
 {% set nginx_conf_folder = '/etc/nginx' %}
-{% set tms_nginx_conf_filename = 'tms-nginx.conf' %}
-{% set tms_nginx_conf_file = nginx_conf_folder + '/sites-available/' + tms_nginx_conf_filename %}
-{% set tms_nginx_conf_linkfile = nginx_conf_folder + '/sites-enabled/' + tms_nginx_conf_filename %}
-{% set tms_nginx_conf_html_root = '/usr/share/nginx/html' %}
+
+{% set nginx_conf_file = nginx_conf_folder + '/sites-available/' + lib.nginx_conf_filename %}
+{% set nginx_conf_linkfile = nginx_conf_folder + '/sites-enabled/' + lib.nginx_conf_filename %}
+{% set nginx_conf_html_root = '/usr/share/nginx/html' %}
 
 
-{% if lib.isNginxServer() == "True" %}
+{% if lib.isNginxServer() == "True" or libisLogstashServer() == "True" %}
 #install nginx
 install-nginx:
   pkg.installed:
@@ -22,8 +22,8 @@ nginx-remove-default-config:
 
 nginx-setup-config:
   file.managed:
-    - name: {{ tms_nginx_conf_file }}
-    - source: salt://nginx/tms-nginx.conf
+    - name: {{ nginx_conf_file }}
+    - source: salt://nginx/{{ lib.nginx_conf_filename }}
     - mode: 644
     - template: jinja
     - require:
@@ -31,19 +31,19 @@ nginx-setup-config:
 
 nginx-error-page:
   file.managed:
-    - name: {{ tms_nginx_conf_html_root }}/503.html
+    - name: {{ nginx_conf_html_root }}/503.html
     - source: salt://nginx/503.html
     - mode: 644
     - template: jinja
     - require:
       - pkg: install-nginx
       
-create-tms-nginx-conf-link:
+create-nginx-conf-link:
   file.symlink:
-    - name: {{ tms_nginx_conf_linkfile }}
-    - target: {{ tms_nginx_conf_file }}
+    - name: {{ nginx_conf_linkfile }}
+    - target: {{ nginx_conf_file }}
     - file.exists:
-      - name: {{ tms_nginx_conf_file }}
+      - name: {{ nginx_conf_file }}
     - require:
       - file: nginx-setup-config
 
@@ -75,7 +75,7 @@ nginx-service:
     - require:
       - pkg: install-nginx
       - file: nginx-setup-config
-      - file: create-tms-nginx-conf-link
+      - file: create-nginx-conf-link
       - file: nginx-server-certificate-key
       - file: nginx-server-certificate
     - watch:

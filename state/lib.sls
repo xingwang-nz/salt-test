@@ -25,6 +25,14 @@
   {%- endif -%}
 {%- endmacro %}
 
+{% if server_role == 'nginx-server' %}
+  {% set nginx_conf_filename = 'tms-nginx.conf' %}
+{% elif server_role == 'logstash-server' %}
+  {% set nginx_conf_filename = 'kibana-nginx.conf' %}
+{%- else %}
+  {% set server_role = '' %}
+{%- endif %}
+
 {% set dbhost = salt['pillar.get']('tms_db:host') %}
 {% set dbport = salt['pillar.get']('tms_db:port') %}
 {% set dbname = salt['pillar.get']('tms_db:dbname') %}
