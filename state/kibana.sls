@@ -1,6 +1,6 @@
 {% import 'lib.sls' as lib with context %}
 
-{% set kibana_extracted_folder = '/usr/local/kibana-4.1.0' %}
+{% set kibana_extracted_folder = '/usr/local/kibana-4.1.0-linux-x64' %}
 {% set kibana_home = '/usr/local/kibana' %}
 
 {% if lib.isLogstashServer() == "True" %}
