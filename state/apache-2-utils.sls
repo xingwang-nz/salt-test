@@ -2,7 +2,7 @@
 {% import 'lib.sls' as lib with context %}
 {% if lib.isLogstashServer() == "True" %}
 
-# can command "sudo htpasswd -c /etc/htpasswd.users <username>" to add new user 
+# user command "sudo htpasswd -c /etc/htpasswd.users <username>" to add new user 
 install-apache2-utils:
   pkg.installed:
     - name: apache2-utils
