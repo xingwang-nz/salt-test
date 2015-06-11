@@ -8,20 +8,20 @@ install-logstash:
       - logstash: salt://logstash-files/logstash_1.5.0-1_all.deb
 
 #Configure Elasticsearch
-config-logstash:
+config-logstash-lumberjack-input:
   file.managed:
-    - name: {{ logstash_conf_folder }}
-    - source: 
-      - salt://logstash-files/logstash-conf/lumberjack-input.conf
-      - salt://logstash-files/logstash-conf/out.conf
-      - salt://logstash-files/logstash-conf/syslog.conf
-      - salt://logstash-files/logstash-conf/tcp-input.conf
+    - name: {{ logstash_conf_folder }}/logstash.conf
+    - source: salt://logstash-files/logstash.conf
     - mode: 644
     - makedirs: True
     - template: jinja
     - require:
       - pkg: install-logstash
-      
+
+- salt://logstash-files/logstash-conf/out.conf
+      - salt://logstash-files/logstash-conf/syslog.conf
+      - salt://logstash-files/logstash-conf/tcp-input.conf
+            
 logstash-service:
   service.running:
     - name: logstash
