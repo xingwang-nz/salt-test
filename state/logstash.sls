@@ -5,7 +5,7 @@
 install-logstash:
   pkg.installed:
     - sources:
-      - elasticsearch: salt://logstash-files/logstash_1.5.0-1_all.deb
+      - logstash: salt://logstash-files/logstash_1.5.0-1_all.deb
 
 #Configure Elasticsearch
 config-logstash:
