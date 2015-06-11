@@ -1,7 +1,7 @@
 {% import 'lib.sls' as lib with context %}
 {% set logstash_conf_folder = '/etc/logstash/conf.d' %}
 
-{% if lib.isNginxServer() == "True" %}
+{% if lib.isLogstashServer() == "True" %}
 install-logstash:
   pkg.installed:
     - sources:
