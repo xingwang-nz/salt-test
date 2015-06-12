@@ -8,5 +8,4 @@
     <role rolename="manager-gui"/>
     <user username="{{ salt['pillar.get']('tomcat-manager:user') }}" password="{{ salt['pillar.get']('tomcat-manager:passwd') }}" roles="manager-script,manager-gui"/>
     
-
 </tomcat-users>
