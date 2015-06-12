@@ -25,7 +25,7 @@ ssl:
   enable_sslv2hello: False
     
 tms:
-  tms_war: sdemo-1.1.0.war
+  tms_war: sdemo-1.1.15.war
   
   s3_bucket: invenco-nz-qa-tmsfiles-configuration-target
 

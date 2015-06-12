@@ -84,4 +84,12 @@ nginx-service:
       - file: nginx-server-certificate
       - file: nginx-error-page
       
+restart-nginx-service:
+  cmd.wait:
+    - name: /etc/init.d/nginx restart
+    - watch:
+      - file: nginx-setup-config
+      - file: nginx-server-certificate-key
+      - file: nginx-server-certificate
+      - file: nginx-error-page      
 {% endif %}

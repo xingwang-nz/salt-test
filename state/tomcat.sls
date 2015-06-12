@@ -72,10 +72,17 @@ tomcat-service:
     - watch:
       - file: upload-tomcat-service-start-stop-script
       - file: upload-tomcat-users-xml
-
+      
+restart-tomcat-service:
+  cmd.wait:
+    - name: /etc/init.d/logstash tomcat
+    - watch:
+      - file: upload-tomcat-service-start-stop-script
+      - file: upload-tomcat-users-xml
+      
 wait-for-tomcat_start:
   cmd.run:
-    - name: sleep 10
+    - name: sleep 20
           
 #start deployment
 wait-for-tomcat-manager:
