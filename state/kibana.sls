@@ -54,4 +54,10 @@ kibana-service:
       - file: upload-kibana-deamon-script
       - file: config-kibana
 
+restart-kibana-service:
+  cmd.wait:
+    - name: /etc/init.d/kibana restart
+    - watch:
+      - file: upload-kibana-deamon-script
+      - file: config-kibana
 {% endif %}

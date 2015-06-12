@@ -27,4 +27,10 @@ start-redis-service:
     - watch:
       - file: config-redis
 
+restart-redis-service:
+  cmd.wait:
+    - name: /etc/init.d/redis restart
+    - watch:
+      - file: upload-kibana-deamon-script
+      - file: config-redis
 {% endif %} 
