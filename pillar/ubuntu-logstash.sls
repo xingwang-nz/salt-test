@@ -5,7 +5,7 @@ ec2_server:
     xing:
       is_sudo: True
 
-redis_bind_ip: 172.25.115.40 
+logstash_interface_ip: 172.25.115.40 
 
 # htpasswd password file location
 ht_password:

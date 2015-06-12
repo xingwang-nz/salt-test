@@ -42,10 +42,5 @@ logstash-service:
       - file: config-logstash
     - watch:
       - file: config-logstash
-
-#install-redis-server:
-#  pkg.installed:
-#    - name: redis-server
-#    - skip_verify: True
-#    - skip_suggestions: True
+   
 {% endif %}    

@@ -12,5 +12,6 @@ include:
   - nginx
   - kibana
   - logstash-repo
+  - redis-server
 {% endif %}
     

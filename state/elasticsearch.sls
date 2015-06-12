@@ -7,15 +7,23 @@ install-elasticsearch:
       - elasticsearch: salt://logstash-files/elasticsearch-1.6.0.deb
 
 #Configure Elasticsearch
+#config-elasticsearch:
+#  file.managed:
+#    - name: /etc/elasticsearch/elasticsearch.yml
+#    - source: salt://logstash-files/elasticsearch.yml
+#    - mode: 644
+#    - template: jinja
+#    - require:
+#      - pkg: install-elasticsearch
+      
 config-elasticsearch:
-  file.managed:
+  file.append:
     - name: /etc/elasticsearch/elasticsearch.yml
-    - source: salt://logstash-files/elasticsearch.yml
-    - mode: 644
-    - template: jinja
+    - text: 
+      - "cluster.name: logstash"
     - require:
       - pkg: install-elasticsearch
-      
+            
 elasticsearch-service:
   service.running:
     - name: elasticsearch
