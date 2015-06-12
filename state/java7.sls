@@ -1,5 +1,5 @@
 #this state file install jdk1.7
-{% import 'lib.sls' as lib %}
+{% import 'lib.sls' as lib with context %}
 
 {% if lib.isTmsServer() == "True" or lib.isLogstashServer() == "True" %}
 # add PPA  

@@ -1,4 +1,4 @@
-{% import 'lib.sls' as lib with context%}
+{% import 'lib.sls' as lib with context %}
 
 {% if lib.isTmsServer() == "True" %}
 create-tomcat-group:

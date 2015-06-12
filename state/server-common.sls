@@ -1,4 +1,4 @@
-{% import 'lib.sls' as lib with context%}
+{% import 'lib.sls' as lib with context %}
 
 set-time-zone:
   timezone.system:
@@ -47,4 +47,3 @@ install-ntp:
   pkg.installed:
     - name: ntp
     - skip_suggestions: True
-  

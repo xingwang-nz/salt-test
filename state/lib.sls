@@ -30,7 +30,7 @@
 {% elif server_role == 'logstash-server' %}
   {% set nginx_conf_filename = 'kibana-nginx.conf' %}
 {%- else %}
-  {% set server_role = '' %}
+  {% set nginx_conf_filename = '' %}
 {%- endif %}
 
 {% set dbhost = salt['pillar.get']('tms_db:host') %}

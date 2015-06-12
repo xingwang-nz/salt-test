@@ -7,7 +7,7 @@ install-logstash:
     - sources:
       - logstash: salt://logstash-files/logstash_1.5.0-1_all.deb
 
-#Configure Elasticsearch
+#Configure logstash
 config-logstash:
   file.managed:
     - name: {{ logstash_conf_folder }}/logstash.conf

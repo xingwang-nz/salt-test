@@ -11,6 +11,6 @@ include:
   - apache-2-utils
   - nginx
   - kibana
-  - logstash
+  - logstash-repo
 {% endif %}
     
