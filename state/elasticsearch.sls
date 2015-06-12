@@ -21,7 +21,7 @@ config-elasticsearch:
     - name: /etc/elasticsearch/elasticsearch.yml
     - text: 
       - "cluster.name: logstash"
-      - "node.name: abc"
+      - "node.name: {{ lib.id }}"
     - require:
       - pkg: install-elasticsearch
             
@@ -35,4 +35,11 @@ elasticsearch-service:
       - file: config-elasticsearch 
     - watch:
       - file: config-elasticsearch
+      
+restart-elasticsearch-service:
+  cmd.wait:
+    - name: /etc/init.d/elasticsearch restart
+    - watch:
+        - file: config-elasticsearch
+         
 {% endif %}
