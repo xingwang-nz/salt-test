@@ -20,7 +20,7 @@ install-logstash:
     - skip_verify: True
     - skip_suggestions: True
     - require:
-      - cmd: logstash-repo
+      - pkgrepo: logstash-repo
 
 #Configure logstash
 config-logstash:
