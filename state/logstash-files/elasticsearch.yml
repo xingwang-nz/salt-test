@@ -385,4 +385,5 @@
 #http.jsonp.enable: true
 
 #only local access
-network.bind_host: localhost
+#network.bind_host: localhost
+cluster.name: logstash
