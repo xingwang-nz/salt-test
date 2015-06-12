@@ -41,7 +41,7 @@ config-kibana:
     - require:
       - archive: download-kibana   
 
-#start tomcat service            
+#start kibana service            
 kibana-service:
   service.running:
     - name: kibana

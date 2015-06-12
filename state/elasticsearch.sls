@@ -21,6 +21,7 @@ config-elasticsearch:
     - name: /etc/elasticsearch/elasticsearch.yml
     - text: 
       - "cluster.name: logstash"
+      - "node.name: {{ lib.id }}"
     - require:
       - pkg: install-elasticsearch
             
