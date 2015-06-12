@@ -75,7 +75,7 @@ tomcat-service:
       
 restart-tomcat-service:
   cmd.wait:
-    - name: /etc/init.d/logstash tomcat
+    - name: /etc/init.d/tomcat restart
     - watch:
       - file: upload-tomcat-service-start-stop-script
       - file: upload-tomcat-users-xml
