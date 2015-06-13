@@ -8,4 +8,6 @@ ec2_server:
 # htpasswd password file location
 ht_password:
   password_file: /etc/htpasswd.users
-        
+
+elasticsearch:
+  cluster_name: logstash
