@@ -6,6 +6,7 @@ include:
   - nginx
 {% elif lib.isTmsServer() == "True" %}
   - postgresql-client
+  - rsyslog
 {% elif lib.isLogstashServer() == "True" %}
   - elasticsearch
   - apache-2-utils
