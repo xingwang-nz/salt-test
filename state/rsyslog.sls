@@ -27,7 +27,7 @@ rsyslog-service:
 
 restart-rsyslog-service:
   cmd.wait:
-    - name: /etc/init.d/rsyslog restart
+    - name: sudo service rsyslog restart
     - watch:
       - file: config-rsyslog      
 {% endif %}
