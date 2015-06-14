@@ -56,7 +56,7 @@ kibana-service:
 
 restart-kibana-service:
   cmd.wait:
-    - name: /etc/init.d/kibana restart
+    - name: sudo service kibana restart
     - watch:
       - file: upload-kibana-deamon-script
       - file: config-kibana

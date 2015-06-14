@@ -45,7 +45,7 @@ logstash-service:
 
 restart-logstash-service:
   cmd.wait:
-    - name: /etc/init.d/logstash restart
+    - name: sudo service logstash restart
     - watch:
       - file: config-logstash
 {% endif %}    

@@ -53,7 +53,7 @@ elasticsearch-service:
       
 restart-elasticsearch-service:
   cmd.wait:
-    - name: /etc/init.d/elasticsearch restart
+    - name: sudo service elasticsearch restart
     - watch:
         - file: config-elasticsearch
         - file: elasticsearch-change-pid-folder
