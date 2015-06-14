@@ -46,16 +46,16 @@ elasticsearch-service:
     - require:
       - pkg: install-elasticsearch
       - file: config-elasticsearch
-      - file: elasticsearch-change-pid-folde
+      - file: elasticsearch-change-pid-folder
     - watch:
       - file: config-elasticsearch
-      - file: elasticsearch-change-pid-folde
+      - file: elasticsearch-change-pid-folder
       
 restart-elasticsearch-service:
   cmd.wait:
     - name: /etc/init.d/elasticsearch restart
     - watch:
         - file: config-elasticsearch
-        - file: elasticsearch-change-pid-folde
+        - file: elasticsearch-change-pid-folder
          
 {% endif %}
