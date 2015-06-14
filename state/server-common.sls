@@ -46,7 +46,7 @@ enable-native-syslog-support:
   cmd.run:
     - name: awk '{gsub(/active = no/,"active = yes")}' /etc/audisp/plugins.d/syslog.conf
     - unless:
-      - grep "active = no" /etc/audisp/plugins.d/syslog.conf
+      - grep "active = yes" /etc/audisp/plugins.d/syslog.conf
       
 restart-auditd-service:
   cmd.run:
