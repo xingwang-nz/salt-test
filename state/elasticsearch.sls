@@ -26,6 +26,17 @@ config-elasticsearch:
       - "node.name: {{ lib.id }}"
     - require:
       - pkg: install-elasticsearch
+
+# change the PID_DIR from "/var/run/elasticsearch" to "/var/run"
+# elasticsearch1.6 has a bug, the /var/run/elasticsearch folder is deleted everytime when ubuntu reboot, 
+# as a result, the process id won't be able to written to the folder and the service cannot be restarted  
+elasticsearch-change-pid-folder:
+  file.append:
+    - name: /etc/default/elasticsearch
+    - text: 
+      - "PID_DIR=/var/run"
+    - require:
+      - pkg: install-elasticsearch
             
 elasticsearch-service:
   service.running:
@@ -34,14 +45,17 @@ elasticsearch-service:
     - reload: True
     - require:
       - pkg: install-elasticsearch
-      - file: config-elasticsearch 
+      - file: config-elasticsearch
+      - file: elasticsearch-change-pid-folde
     - watch:
       - file: config-elasticsearch
+      - file: elasticsearch-change-pid-folde
       
 restart-elasticsearch-service:
   cmd.wait:
     - name: /etc/init.d/elasticsearch restart
     - watch:
         - file: config-elasticsearch
+        - file: elasticsearch-change-pid-folde
          
 {% endif %}
