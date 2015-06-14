@@ -4,5 +4,6 @@ logging_server:
 
 # the port number of different event inbound endpoints in logstash server
   logstash_port: 4560
-  redis_port: 6379
   rsyslog_port: 5514
+  redis_port: 6379
+
