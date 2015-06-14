@@ -13,6 +13,6 @@ include:
   - nginx
   - kibana
   - logstash-repo
-  - redis-server
+#  - redis-server
 {% endif %}
     
