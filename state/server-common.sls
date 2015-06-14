@@ -41,6 +41,21 @@ auditd-service:
       - file: configure-audit-rules
       - cmd: set-audit-buffer
 
+#enable the native syslog support in auditd by activating /etc/audisp/plugins.d/syslog.conf
+enable-native-syslog-support:
+  cmd.run:
+    -name: awk '{gsub(/active = no/,"active = yes")}' /etc/audisp/plugins.d/syslog.conf
+    - unless:
+      - grep "active = no" /etc/audisp/plugins.d/syslog.conf
+      
+restart-auditd-service:
+  cmd.run:
+    - name: sudo service restart auditd
+    - watch:
+      - file: configure-audit-rules
+      - cmd: set-audit-buffer
+      - cmd: enable-native-syslog-support
+            
 # install ntp for server time synchronisation
 # default minpoll=64s maxpoll=1024s(about 17minutes), expect time synchronization happends every 64 second ~ 17 minutes 
 install-ntp:
