@@ -8,7 +8,7 @@ install-rsyslog:
 
 config-rsyslog:
   file.managed:
-    - name: /etc/ rsyslog.conf
+    - name: /etc/rsyslog.conf
     - source: salt://log-agent-files/rsyslog/rsyslog.conf
     - makedirs: True
     - template: jinja
