@@ -50,7 +50,7 @@ enable-native-syslog-support:
       
 restart-auditd-service:
   cmd.run:
-    - name: sudo service restart auditd
+    - name: sudo service auditd restart
     - watch:
       - file: configure-audit-rules
       - cmd: set-audit-buffer
