@@ -20,6 +20,10 @@ nginx-remove-default-config:
     - require:
       - pkg: install-nginx
 
+echo-nginx-setup-config-file-{{ lib.server_role }}:
+  cmd.run:
+    - name: echo "nginx-conf-file={{ lib.nginx_conf_filename }}"
+    
 nginx-setup-config:
   file.managed:
     - name: {{ nginx_conf_file }}

@@ -1,8 +1,10 @@
+{% import 'lib.sls' as lib with context %}
+
 # Kibana is served by a back end server. This controls which port to use.
-port: 5601
+port: {{ salt['pillar.get']('kibana_server:port') }}
 
 # The host to bind the server to.
-host: "localhost"
+host: "{{ lib.kibana_server_host }}"
 
 # The Elasticsearch instance to use for all your queries.
 elasticsearch_url: "http://localhost:9200"

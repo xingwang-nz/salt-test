@@ -29,9 +29,16 @@
   {% set nginx_conf_filename = 'tms-nginx.conf' %}
 {% elif server_role == 'logstash-server' %}
   {% set nginx_conf_filename = 'kibana-nginx.conf' %}
-{%- else %}
+{% else %}
   {% set nginx_conf_filename = '' %}
-{%- endif %}
+{% endif %}
+
+
+{% if salt['pillar.get']('kibana_server:host') == None or salt['pillar.get']('kibana_server:host') == '' %}
+  {% set kibana_server_host = salt['pillar.get']('logging_server:host') %}
+{% else %}
+  {% set kibana_server_host = salt['pillar.get']('kibana_server:host') %}
+{% endif %}
 
 {% set dbhost = salt['pillar.get']('tms_db:host') %}
 {% set dbport = salt['pillar.get']('tms_db:port') %}
