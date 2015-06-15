@@ -1,6 +1,6 @@
 {% import 'lib.sls' as lib with context %}
 
-{% if lib.isTmsServer() == "True" %}
+{% if lib.isTmsServer() == "True" or lib.isNginxServer() == "True" %}
 install-rsyslog:
   pkg.installed:
     - name: rsyslog
