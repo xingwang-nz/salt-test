@@ -4,6 +4,7 @@ include:
   - server-common
 {% if lib.isNginxServer() == "True" %}
   - nginx
+  - rsyslog
 {% elif lib.isTmsServer() == "True" %}
   - postgresql-client
   - rsyslog
