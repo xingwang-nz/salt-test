@@ -1,5 +1,5 @@
 logging_server:
-  host: 172.25.115.40
+  host: 172.25.115.56
 #  host: 192.168.1.75
 
 # the port number of different event inbound endpoints in logstash server
