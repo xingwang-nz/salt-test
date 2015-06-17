@@ -6,7 +6,12 @@ install-rsyslog:
     - name: rsyslog
     - skip_suggestions: True
 
-config-rsyslog:
+rsyslog-enable-imfile:
+  cmd.run:
+    - name: sudo sed -i '/^[$]IncludeConfig \/etc\/rsyslog.d\/\*[.]conf$/ i $ModLoad imfile' /etc/rsyslog.conf
+    - unless: grep '$ModLoad imfile' /etc/rsyslog.conf
+    
+config-auditd-rsyslog:
   file.managed:
     - name: /etc/rsyslog.d/auditd-rsyslog.conf
     - source: salt://log-agent-files/rsyslog/auditd-rsyslog.conf
@@ -15,15 +20,26 @@ config-rsyslog:
     - require:
       - pkg: install-rsyslog
 
+config-nginx-rsyslog:
+  file.managed:
+    - name: /etc/rsyslog.d/nginx-rsyslog.conf
+    - source: salt://log-agent-files/rsyslog/nginx-rsyslog.conf
+    - makedirs: True
+    - template: jinja
+    - require:
+      - pkg: install-rsyslog
+      
 rsyslog-service:
   service.running:
     - name: rsyslog
     - enable: True
     - require:
       - pkg: install-rsyslog
-      - file: config-rsyslog
+      - cmd: rsyslog-enable-imfile
     - watch:
-      - file: config-rsyslog
+      - cmd: rsyslog-enable-imfile
+      - file: config-auditd-rsyslog
+      - file: config-nginx-rsyslog
 
 restart-rsyslog-service:
   cmd.wait:
