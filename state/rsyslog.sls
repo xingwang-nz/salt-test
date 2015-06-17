@@ -11,7 +11,14 @@ rsyslog-enable-imfile:
   cmd.run:
     - name: sudo sed -i '/^[$]IncludeConfig \/etc\/rsyslog.d\/\*[.]conf$/ i $ModLoad imfile' /etc/rsyslog.conf
     - unless: grep '$ModLoad imfile' /etc/rsyslog.conf
-    
+
+#change rsyslog's permissiom from syslog to adm group
+# sed -i 's/^[$]PrivDropToGroup syslog//$PrivDropToGroup adm/i1' /etc/rsyslog.conf
+rsyslog-enable-imfile:
+  cmd.run:
+    - name: sudo sed -i 's/^[$]PrivDropToGroup syslog//$PrivDropToGroup root/i1' /etc/rsyslog.conf
+    - unless: grep '$PrivDropToGroup root' /etc/rsyslog.conf
+  
 config-auditd-rsyslog:
   file.managed:
     - name: /etc/rsyslog.d/auditd-rsyslog.conf
@@ -20,7 +27,7 @@ config-auditd-rsyslog:
     - template: jinja
     - require:
       - pkg: install-rsyslog
-
+      
 {% if lib.isNginxServer() == "True" %}
 config-nginx-rsyslog:
   file.managed:
