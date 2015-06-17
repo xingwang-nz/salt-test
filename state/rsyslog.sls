@@ -31,6 +31,17 @@ config-nginx-rsyslog:
     - require:
       - pkg: install-rsyslog
 {% endif %}
+
+{% if lib.isTmsServer() == "True" %}
+config-tomcat-rsyslog:
+  file.managed:
+    - name: /etc/rsyslog.d/tomcat-rsyslog.conf
+    - source: salt://log-agent-files/rsyslog/tomcat-rsyslog.conf
+    - makedirs: True
+    - template: jinja
+    - require:
+      - pkg: install-rsyslog
+{% endif %}
       
 rsyslog-service:
   service.running:
@@ -45,6 +56,9 @@ rsyslog-service:
 {% if lib.isNginxServer() == "True" %}      
       - file: config-nginx-rsyslog
 {% endif %}
+{% if lib.isTmsServer() == "True" %}      
+      - file: config-tomcat-rsyslog
+{% endif %}
 
 restart-rsyslog-service:
   cmd.wait:
@@ -55,5 +69,8 @@ restart-rsyslog-service:
 {% if lib.isNginxServer() == "True" %}      
       - file: config-nginx-rsyslog
 {% endif %}
-     
+{% if lib.isTmsServer() == "True" %}      
+      - file: config-tomcat-rsyslog
+{% endif %}
+
 {% endif %}
