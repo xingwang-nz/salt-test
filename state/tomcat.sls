@@ -63,12 +63,12 @@ change-owner-to-tomcat:
     - name: {{ tomcat_extracted_folder }}
     - user: tomcat
     - group: tomcat
-    - file_mode: 744
-    - dir_mode: 755
+#    - file_mode: 744
+#    - dir_mode: 755
     - recurse:
       - user
       - group
-      - mode
+#      - mode
     - require:
       - archive: download-tomcat
     - unless:

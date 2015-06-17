@@ -92,7 +92,7 @@ status)
     echo "Tomcat is not running"
     exit 1
   fi
- ;; 
+;; 
  *)
  echo -n -e "\nUsage: $0 {start|stop|restart|status}\n" 
 	exit 1
