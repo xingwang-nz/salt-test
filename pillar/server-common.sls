@@ -14,5 +14,5 @@ kibana_server:
 
 rsyslog:
   # It specifies how often files are to be polled for new data. The time specified is in seconds
-  input_file_poll_interval: 2
+  input_file_poll_interval: 1
    
