@@ -89,7 +89,11 @@ tomcat-service:
       - file: upload-tomcat-service-start-stop-script
       - file: upload-tomcat-users-xml
       - file: upload-tomcat-server-xml
-            
+
+wait-for-tomcat_start:
+  cmd.run:
+    - name: sleep 20
+                
 restart-tomcat-service:
   cmd.wait:
     - name: /etc/init.d/tomcat restart
@@ -98,9 +102,6 @@ restart-tomcat-service:
       - file: upload-tomcat-users-xml
       - file: upload-tomcat-server-xml
             
-wait-for-tomcat_start:
-  cmd.run:
-    - name: sleep 20
           
 #start deployment
 wait-for-tomcat-manager:
