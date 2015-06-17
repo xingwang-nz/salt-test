@@ -20,6 +20,7 @@ config-auditd-rsyslog:
     - require:
       - pkg: install-rsyslog
 
+{% if lib.isNginxServer() == "True" %}
 config-nginx-rsyslog:
   file.managed:
     - name: /etc/rsyslog.d/nginx-rsyslog.conf
@@ -28,6 +29,7 @@ config-nginx-rsyslog:
     - template: jinja
     - require:
       - pkg: install-rsyslog
+{% endif %}
       
 rsyslog-service:
   service.running:
@@ -39,11 +41,18 @@ rsyslog-service:
     - watch:
       - cmd: rsyslog-enable-imfile
       - file: config-auditd-rsyslog
+{% if lib.isNginxServer() == "True" %}      
       - file: config-nginx-rsyslog
+{% endif %}
 
 restart-rsyslog-service:
   cmd.wait:
     - name: sudo service rsyslog restart
     - watch:
-      - file: config-rsyslog      
+      - cmd: rsyslog-enable-imfile
+      - file: config-auditd-rsyslog
+{% if lib.isNginxServer() == "True" %}      
+      - file: config-nginx-rsyslog
+{% endif %}
+     
 {% endif %}
