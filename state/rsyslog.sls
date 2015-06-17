@@ -16,8 +16,8 @@ rsyslog-enable-imfile:
 # sed -i 's/^[$]PrivDropToGroup syslog//$PrivDropToGroup adm/i1' /etc/rsyslog.conf
 rsyslog-change-group-permission:
   cmd.run:
-    - name: sudo sed -i 's/^[$]PrivDropToGroup syslog/$PrivDropToGroup root/i1' /etc/rsyslog.conf
-    - unless: grep '$PrivDropToGroup root' /etc/rsyslog.conf
+    - name: sudo sed -i 's/^[$]PrivDropToGroup/$PrivDropToGroup adm/i1' /etc/rsyslog.conf
+    - unless: grep '$PrivDropToGroup adm' /etc/rsyslog.conf
   
 config-auditd-rsyslog:
   file.managed:
