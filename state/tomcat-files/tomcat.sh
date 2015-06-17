@@ -94,7 +94,7 @@ status)
   fi
  ;; 
  *)
- echo -n -e "\nUsage: $0 {start|stop|status}\n" 
+ echo -n -e "\nUsage: $0 {start|stop|restart|status}\n" 
 	exit 1
  ;;
 esac    
