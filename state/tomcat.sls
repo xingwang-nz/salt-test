@@ -63,13 +63,15 @@ change-owner-to-tomcat:
     - name: {{ tomcat_extracted_folder }}
     - user: tomcat
     - group: tomcat
+    - mode: 755
     - recurse:
       - user
       - group
+      - mode
     - require:
       - archive: download-tomcat
-    - unless:
-      - stat -c "%U" {{ tomcat_extracted_folder }} | grep tomcat
+#    - unless:
+#      - stat -c "%U" {{ tomcat_extracted_folder }} | grep tomcat
 
 #start tomcat service            
 tomcat-service:
