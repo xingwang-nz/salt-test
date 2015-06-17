@@ -6,6 +6,7 @@ install-rsyslog:
     - name: rsyslog
     - skip_suggestions: True
 
+# add "$ModLoad imfile" to /etc/rsyslog.conf before the line  "$IncludeConfig /etc/rsyslog.d/*.conf"
 rsyslog-enable-imfile:
   cmd.run:
     - name: sudo sed -i '/^[$]IncludeConfig \/etc\/rsyslog.d\/\*[.]conf$/ i $ModLoad imfile' /etc/rsyslog.conf
