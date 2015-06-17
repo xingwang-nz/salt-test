@@ -15,23 +15,6 @@ download-tomcat:
     - tar_options: v
     - if_missing: {{ tomcat_extracted_folder }}
 
-#change the tomcat folder owner to tomcat unless the owner was tomcat    
-change-owner-to-tomcat:
-  file.directory:
-    - name: {{ tomcat_extracted_folder }}
-    - user: tomcat
-    - group: tomcat
-    - file_mode: 744
-    - dir_mode: 755
-    - recurse:
-      - user
-      - group
-      - mode
-    - require:
-      - archive: download-tomcat
-#    - unless:
-#      - stat -c "%U" {{ tomcat_extracted_folder }} | grep tomcat
-     
 create-tomcat-link:
   file.symlink:
     - name: {{ tomcat_home }}
@@ -61,7 +44,7 @@ upload-tomcat-server-xml:
     - template: jinja
     - require:
       - file: create-tomcat-link
-            
+
 #add script deploment manager
 upload-tomcat-users-xml:
   file.managed:
@@ -73,7 +56,25 @@ upload-tomcat-users-xml:
     - template: jinja
     - require:
       - file: create-tomcat-link      
-      
+
+#change the tomcat folder owner to tomcat unless the owner was tomcat    
+change-owner-to-tomcat:
+  file.directory:
+    - name: {{ tomcat_extracted_folder }}
+    - user: tomcat
+    - group: tomcat
+    - file_mode: 744
+    - dir_mode: 755
+    - recurse:
+      - user
+      - group
+      - mode
+    - require:
+      - archive: download-tomcat
+#    - unless:
+#      - stat -c "%U" {{ tomcat_extracted_folder }} | grep tomcat
+ 
+       
 #start tomcat service            
 tomcat-service:
   service.running:
