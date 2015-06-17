@@ -33,7 +33,18 @@ upload-tomcat-service-start-stop-script:
     - mode: 755
     - require:
       - archive: download-tomcat
-      
+
+upload-tomcat-server-xml:
+  file.managed:
+    - name: {{ tomcat_home }}/conf/server.xml
+    - source: salt://tomcat-files/server.xml
+    - user: tomcat
+    - group: tomcat
+    - mode: 644
+    - template: jinja
+    - require:
+      - file: create-tomcat-link
+            
 #add script deploment manager
 upload-tomcat-users-xml:
   file.managed:
@@ -69,17 +80,20 @@ tomcat-service:
       - file: upload-tomcat-service-start-stop-script
       - file: upload-tomcat-users-xml
       - file: change-owner-to-tomcat
+      - file: upload-tomcat-server-xml
     - watch:
       - file: upload-tomcat-service-start-stop-script
       - file: upload-tomcat-users-xml
-      
+      - file: upload-tomcat-server-xml
+            
 restart-tomcat-service:
   cmd.wait:
     - name: /etc/init.d/tomcat restart
     - watch:
       - file: upload-tomcat-service-start-stop-script
       - file: upload-tomcat-users-xml
-      
+      - file: upload-tomcat-server-xml
+            
 wait-for-tomcat_start:
   cmd.run:
     - name: sleep 20
