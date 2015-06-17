@@ -93,5 +93,9 @@ status)
     exit 1
   fi
 ;; 
+ *)
+	log_success_msg "Usage: $0 {start|stop|status}"
+	exit 1
+	;;
 esac    
 exit 0
