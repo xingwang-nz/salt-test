@@ -10,4 +10,9 @@ logging_server:
 kibana_server:
   #optional, if not supplied, assume kibana is in the logstash server, thus uses  logging_server:host 
   host: localhost
-  port: 5601 
+  port: 5601
+
+rsyslog:
+  # It specifies how often files are to be polled for new data. The time specified is in seconds
+  input_file_poll_interval: 2
+   
