@@ -94,7 +94,7 @@ status)
   fi
  ;; 
  *)
- log_success_msg "Usage: $0 {start|stop|status}"
+ echo -n -e "\nUsage: $0 {start|stop|status}\n"   "Usage: $0 {start|stop|status}"
 	exit 1
  ;;
 esac    
