@@ -49,7 +49,7 @@ enable-native-syslog-support:
       - grep "active = yes" /etc/audisp/plugins.d/syslog.conf
       
 restart-auditd-service:
-  cmd.run:
+  cmd.wait:
     - name: sudo service auditd restart
     - watch:
       - file: configure-audit-rules
