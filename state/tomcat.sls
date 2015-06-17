@@ -63,7 +63,7 @@ change-owner-to-tomcat:
     - name: {{ tomcat_extracted_folder }}
     - user: tomcat
     - group: tomcat
-    - mode: 766
+    - mode: 777
     - recurse:
       - user
       - group
