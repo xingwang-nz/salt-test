@@ -14,6 +14,23 @@ download-tomcat:
     - archive_format: tar
     - tar_options: v
     - if_missing: {{ tomcat_extracted_folder }}
+
+#change the tomcat folder owner to tomcat unless the owner was tomcat    
+change-owner-to-tomcat:
+  file.directory:
+    - name: {{ tomcat_extracted_folder }}
+    - user: tomcat
+    - group: tomcat
+    - file_mode: 744
+    - dir_mode: 755
+    - recurse:
+      - user
+      - group
+      - mode
+    - require:
+      - archive: download-tomcat
+#    - unless:
+#      - stat -c "%U" {{ tomcat_extracted_folder }} | grep tomcat
      
 create-tomcat-link:
   file.symlink:
@@ -57,23 +74,6 @@ upload-tomcat-users-xml:
     - require:
       - file: create-tomcat-link      
       
-#change the tomcat folder owner to tomcat unless the owner was tomcat    
-change-owner-to-tomcat:
-  file.directory:
-    - name: {{ tomcat_extracted_folder }}
-    - user: tomcat
-    - group: tomcat
-    - file_mode: 744
-    - dir_mode: 755
-    - recurse:
-      - user
-      - group
-      - mode
-    - require:
-      - archive: download-tomcat
-#    - unless:
-#      - stat -c "%U" {{ tomcat_extracted_folder }} | grep tomcat
-
 #start tomcat service            
 tomcat-service:
   service.running:
