@@ -90,7 +90,7 @@ tomcat-service:
       - file: upload-tomcat-users-xml
       - file: upload-tomcat-server-xml
 
-wait-for-tomcat_service:
+wait-for-tomcat-service:
   cmd.run:
     - name: sleep 20
                 
@@ -102,7 +102,7 @@ restart-tomcat-service:
       - file: upload-tomcat-users-xml
       - file: upload-tomcat-server-xml
             
-wait-for-tomcat_start:
+wait-for-tomcat-start:
   cmd.run:
     - name: sleep 20
               
