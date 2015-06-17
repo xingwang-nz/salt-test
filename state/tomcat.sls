@@ -71,8 +71,8 @@ change-owner-to-tomcat:
       - mode
     - require:
       - archive: download-tomcat
-#    - unless:
-#      - stat -c "%U" {{ tomcat_extracted_folder }} | grep tomcat
+    - unless:
+      - stat -c "%U" {{ tomcat_extracted_folder }} | grep tomcat
  
        
 #start tomcat service            
