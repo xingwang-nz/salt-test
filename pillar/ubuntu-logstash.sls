@@ -11,3 +11,7 @@ ht_password:
 
 elasticsearch:
   cluster_name: logstash
+
+rsyslog:
+  # It specifies how often files are to be polled for new data. The time specified is in seconds
+  input_file_poll_interval: 2
