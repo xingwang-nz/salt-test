@@ -8,8 +8,8 @@ install-rsyslog:
 
 config-rsyslog:
   file.managed:
-    - name: /etc/rsyslog.d/tms-rsyslog.conf
-    - source: salt://log-agent-files/rsyslog/tms-rsyslog.conf
+    - name: /etc/rsyslog.d/auditd-rsyslog.conf
+    - source: salt://log-agent-files/rsyslog/auditd-rsyslog.conf
     - makedirs: True
     - template: jinja
     - require:
