@@ -1,6 +1,6 @@
 {% import 'lib.sls' as lib with context %}
 
-(% set rsyslog_config_file = '/etc/rsyslog.conf' %} 
+{% set rsyslog_config_file = '/etc/rsyslog.conf' %} 
 
 {% if lib.isTmsServer() == "True" or lib.isNginxServer() == "True" %}
 install-rsyslog:
