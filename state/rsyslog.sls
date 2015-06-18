@@ -29,7 +29,7 @@ rsyslog-send-all-logs-to-logstash:
   file.append:
     - name: {{ rsyslog_config_file }}
     - text: 
-      - *.* @@{{ salt['pillar.get']('logging_server:host') }}:{{ salt['pillar.get']('logging_server:rsyslog_port') }}
+      - "*.* @@{{ salt['pillar.get']('logging_server:host') }}:{{ salt['pillar.get']('logging_server:rsyslog_port') }}"
     - require:
       - pkg: install-rsyslog
 
