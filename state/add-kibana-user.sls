@@ -6,7 +6,7 @@
 {% if lib.isLogstashServer() == "True" %}
 
 # add a default user
-add-default-kibana-user:
+add-kibana-user:
   webutil.user_exists:
     - name: {{ kibana_username }}
     - password: {{ kibana_password }}
