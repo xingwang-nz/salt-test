@@ -4,8 +4,6 @@
 {% set kibana_password = salt['pillar.get']('kibana_password') %}
 
 {% if lib.isLogstashServer() == "True" %}
-
-# add a default user
 add-kibana-user:
   webutil.user_exists:
     - name: {{ kibana_username }}
