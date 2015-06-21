@@ -11,7 +11,7 @@
 #    - force: true
 
 add-kibana-user:
-  cmd:run
+  cmd.run:
     - name: echo "abcd "
 
     
