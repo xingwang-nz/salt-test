@@ -4,11 +4,17 @@
 {% set kibana_password = salt['pillar.get']('kibana_password') %}
 
 {% if lib.isLogstashServer() == "True" %}
+#add-kibana-user:
+#  webutil.user_exists:
+#    - name: {{ kibana_username }}
+#    - password: {{ kibana_password }}
+#    - htpasswd_file: {{ salt['pillar.get']('ht_password:password_file') }}
+#    - options: d
+#    - force: true
+
 add-kibana-user:
-  webutil.user_exists:
-    - name: {{ kibana_username }}
-    - password: {{ kibana_password }}
-    - htpasswd_file: {{ salt['pillar.get']('ht_password:password_file') }}
-    - options: d
-    - force: true    
+  cmd:run
+    - name: echo "{{ kibana_username }} {{ kibana_password }}"
+
+    
 {% endif %}
