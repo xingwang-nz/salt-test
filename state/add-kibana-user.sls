@@ -1,7 +1,5 @@
 {% import 'lib.sls' as lib with context %}
 
-{% set kibana_username = salt['pillar.get']('kibana_username') %}
-{% set kibana_password = salt['pillar.get']('kibana_password') %}
 
 {% if lib.isLogstashServer() == "True" %}
 #add-kibana-user:
@@ -14,7 +12,7 @@
 
 add-kibana-user:
   cmd:run
-    - name: echo "{{ kibana_username }} {{ kibana_password }}"
+    - name: echo "abcd "
 
     
 {% endif %}
