@@ -1,3 +1,4 @@
+#this state uses sed command to configure rsyslog.conf 
 {% import 'lib.sls' as lib with context %}
 
 {% set rsyslog_config_file = '/etc/rsyslog.conf' %} 
@@ -8,14 +9,31 @@ install-rsyslog:
     - name: rsyslog
     - skip_suggestions: True
 
-config-rsyslog-conf:
-  file.managed:
+# add "$ModLoad imfile" to /etc/rsyslog.conf before the line  "$IncludeConfig /etc/rsyslog.d/*.conf"
+rsyslog-enable-imfile:
+  cmd.run:
+    - name: sudo sed -i '/^[$]IncludeConfig \/etc\/rsyslog.d\/\*[.]conf$/ i $ModLoad imfile' {{ rsyslog_config_file }}
+    - require:
+      - pkg: install-rsyslog    
+    - unless: grep '$ModLoad imfile' {{ rsyslog_config_file }}
+
+#change rsyslog's group permissiom from syslog to adm group
+rsyslog-change-group-permission:
+  cmd.run:
+    - name: sudo sed -i -r 's/[$]PrivDropToGroup (.){1,}$/$PrivDropToGroup adm/i1' {{ rsyslog_config_file }}
+    - require:
+      - pkg: install-rsyslog    
+    - unless: grep '$PrivDropToGroup adm' {{ rsyslog_config_file }}
+
+#send all logs to logstash
+rsyslog-send-all-logs-to-logstash:
+  file.append:
     - name: {{ rsyslog_config_file }}
-    - source: salt://log-agent-files/rsyslog/rsyslog.conf
-    - template: jinja
+    - text: 
+      - "*.* @@{{ salt['pillar.get']('logging_server:host') }}:{{ salt['pillar.get']('logging_server:rsyslog_port') }}"
     - require:
       - pkg: install-rsyslog
-      
+
 config-auditd-rsyslog:
   file.managed:
     - name: /etc/rsyslog.d/auditd-rsyslog.conf
@@ -53,9 +71,12 @@ rsyslog-service:
     - enable: True
     - require:
       - pkg: install-rsyslog
-      - file: config-rsyslog-conf
+      - cmd: rsyslog-enable-imfile
+      - cmd: rsyslog-change-group-permission
     - watch:
-      - file: config-rsyslog-conf
+      - cmd: rsyslog-enable-imfile
+      - cmd: rsyslog-change-group-permission
+      - file: rsyslog-send-all-logs-to-logstash      
       - file: config-auditd-rsyslog
 {% if lib.isNginxServer() == "True" %}      
       - file: config-nginx-rsyslog
@@ -68,7 +89,9 @@ restart-rsyslog-service:
   cmd.wait:
     - name: sudo service rsyslog restart
     - watch:
-      - file: config-rsyslog-conf
+      - cmd: rsyslog-enable-imfile
+      - cmd: rsyslog-change-group-permission      
+      - file: rsyslog-send-all-logs-to-logstash
       - file: config-auditd-rsyslog      
 {% if lib.isNginxServer() == "True" %}      
       - file: config-nginx-rsyslog
