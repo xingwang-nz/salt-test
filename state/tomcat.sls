@@ -57,6 +57,11 @@ upload-tomcat-users-xml:
     - require:
       - file: create-tomcat-link      
 
+# remove tomcat landing file from ROOT app, as this has been handled in nginx 
+remove-tomcat-landing-page:      
+  file.absent:
+    - name: {{ tomcat_home }}/webapps/ROOT/index.html
+      
 #change the tomcat folder owner to tomcat unless the owner was tomcat    
 change-owner-to-tomcat:
   file.directory:
