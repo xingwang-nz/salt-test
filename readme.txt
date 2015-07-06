@@ -1,2 +1,2 @@
 git config --global merge.ours.driver true
-master
+branch
