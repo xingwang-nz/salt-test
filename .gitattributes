@@ -1,3 +1,1 @@
 readme.txt merge=ours
-pillar/top.sls merge=ours
-state/top.sls merge=ours
