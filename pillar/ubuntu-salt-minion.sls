@@ -28,7 +28,7 @@ ssl:
     
 tms:
   # tms2 web war
-  tms_web_war: tms-web-1.1.8.war
+  tms_web_war: tms-web-1.1.9.war
   
   # tms2 REST api war
   tms_api_war: tms-api-2.0.16.war
@@ -40,13 +40,13 @@ tms:
   tms_terminal_info_war: tms-terminal-info-2.0.9.war
   
   # ics-job
-  ics_job_war: ics-job-1.1.4.war
+  ics_job_war: ics-job-1.1.5.war
   
   # ics-auth
   ics_auth_war: ics-auth-2.0.3.war
   
   # TMS war file to be deployed #
-  tms_war: tms-webapp-1.1.8.war
+  tms_war: tms-webapp-1.1.9.war
   
   s3_bucket: invenco-nz-qa-tmsfiles-configuration-target
 
