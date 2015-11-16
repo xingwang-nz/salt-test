@@ -40,7 +40,7 @@ tms:
   tms_terminal_info_war: tms-terminal-info-2.0.9.war
   
   # ics-job
-  ics_job_war: ics-job-2.0.1.war
+  ics_job_war: ics-job-1.0.0.war
   
   # ics-auth
   ics_auth_war: ics-auth-2.0.3.war
