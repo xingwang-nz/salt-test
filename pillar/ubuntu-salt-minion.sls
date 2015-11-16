@@ -27,7 +27,26 @@ ssl:
   enable_sslv2hello: False
     
 tms:
-  tms_war: sdemo-1.1.16.war
+  # tms2 web war
+  tms_web_war: tms-web-2.0.26.war
+  
+  # tms2 REST api war
+  tms_api_war: tms-api-2.0.16.war
+  
+  # tms-software
+  tms_software_war: tms-software-2.0.11.war
+  
+  # tms-terminal-info
+  tms_terminal_info_war: tms-terminal-info-2.0.9.war
+  
+  # ics-job
+  ics_job_war: ics-job-2.0.1.war
+  
+  # ics-auth
+  ics_auth_war: ics-auth-2.0.3.war
+  
+  # TMS war file to be deployed #
+  tms_war: tms-webapp-1.3.30.war
   
   s3_bucket: invenco-nz-qa-tmsfiles-configuration-target
 
