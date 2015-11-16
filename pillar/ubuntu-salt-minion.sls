@@ -28,7 +28,7 @@ ssl:
     
 tms:
   # tms2 web war
-  tms_web_war: tms-web-2.0.26.war
+  tms_web_war: tms-web-1.0.0.war
   
   # tms2 REST api war
   tms_api_war: tms-api-2.0.16.war
