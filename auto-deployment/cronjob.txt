@@ -1,0 +1,3 @@
+* * * * * /usr/bin/flock -n  /home/jenkins/build/cronjob.lockfile  /home/jenkins/build/upload-release-git.sh >> /home/jenkins/build/upload-release-git.log 2>&1
+
+* * * * * /usr/bin/flock -n  /home/jobs/build-job/cronjob.lockfile  /home/jobs/build-job/salt-deploy-job.sh >> /home/jobs/build-job/salt-deploy-job.log 2>&1
