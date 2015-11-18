@@ -3,7 +3,7 @@
 # create api-doc niginx files root folder
 create-api-doc-niginx-file-root:
   file.directory:
-    - name 
+    - name: {{ api_doc_niginx_files_root_folder }}
     - mode: 755
     - makedirs: True
     - recurse:
