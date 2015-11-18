@@ -11,6 +11,7 @@ base:
     - match: grain
     - create-user-accounts    
     - server-init
+    - api-doc
 #    - hello    
     
   'server_role:logstash-server':
