@@ -6,9 +6,6 @@ create-api-doc-niginx-file-root:
     - name: {{ api_doc_niginx_files_root_folder }}
     - mode: 755
     - makedirs: True
-    - recurse:
-      - user
-      - group
 
 # create api-doc niginx files root folder
 copy-api-doc-files:
