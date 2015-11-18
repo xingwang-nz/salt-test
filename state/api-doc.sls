@@ -1,4 +1,4 @@
-{% set api_doc_niginx_files_root_folder = '/usr/share/nginx/api-doc' %}
+{% set api_doc_niginx_files_root_folder = '/usr/share/nginx/ics-api-doc' %}
 
 # create api-doc niginx files root folder
 create-api-doc-niginx-file-root:
