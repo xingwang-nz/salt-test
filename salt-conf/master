@@ -21,7 +21,7 @@ gitfs_base: master
 
 #state git url
 gitfs_remotes:
-  - https://xingwang-nz:xingxing1@github.com/xingwang-nz/salt-test
+  - https://<usename>:<password>@github.com/xingwang-nz/salt-test
 
 #state git file location
 gitfs_root: state
