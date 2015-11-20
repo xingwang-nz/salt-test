@@ -7,3 +7,7 @@ base:
   'ubuntu-logstash':
     - match: list
     - ubuntu-logstash
+
+dev:
+  '*':
+    - server-common    

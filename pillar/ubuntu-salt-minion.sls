@@ -12,8 +12,6 @@ ec2_server:
     xing:
       is_sudo: True
       
-hello_message: "hello from"      
- 
 tms_db:
   host: test-db-host
   port: 5432
