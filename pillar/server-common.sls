@@ -17,5 +17,5 @@ rsyslog:
   input_file_poll_interval: 1
   
 
-hello_message: "master hello"  
+hello_message: "master hello: "  
   
