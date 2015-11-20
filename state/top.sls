@@ -8,7 +8,7 @@ base:
     - hello
     
   'server_role:nginx-server':
-#    - match: grain
+    - match: grain
 #    - create-user-accounts    
 #    - server-init
 #    - api-doc
