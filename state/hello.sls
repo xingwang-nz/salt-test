@@ -1,8 +1,9 @@
 {% import 'lib.sls' as lib %}
+{% set message = salt['pillar.get']('hello_message') + 'master branch' %}
 
 echo-hello:
   cmd.run:
-    - name: echo "{{ salt['pillar.get']('hello_message') }} master branch"
+    - name: echo "{{ message }}"
 
 echo-server-role:
   cmd.run:
