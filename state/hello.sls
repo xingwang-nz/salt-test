@@ -7,8 +7,8 @@ echo-hello:
 
 echo-server-role:
   cmd.run:
-    - name: echo "server role"
-#    - name: echo "server role: {{ lib.server_role }}  master branch"
+#    - name: echo "server role"
+    - name: echo "server role: {{ lib.server_role }}  master branch"
     
 echo-minion-id:
   cmd.run:
