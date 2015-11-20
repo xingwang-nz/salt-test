@@ -3,7 +3,7 @@
 
 echo-hello:
   cmd.run:
-    - name: echo "{{ message }}"
+    - name: echo "aaa"
 
 echo-server-role:
   cmd.run:
