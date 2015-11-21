@@ -3,12 +3,12 @@
 
 echo-hello:
   cmd.run:
-    - name: echo "{{ message }}"
+    - name: echo "{{ message }} - with branch change"
 
 echo-server-role:
   cmd.run:
-    - name: echo "server role- {{ salt['pillar.get']('hello_message') }}  master branch"
+    - name: echo "server role- {{ salt['pillar.get']('hello_message') }}  master branch- with branch change"
     
 echo-minion-id:
   cmd.run:
-    - name: echo "grain id- {{ lib.id }}  master branch"
+    - name: echo "grain id- {{ lib.id }}  master branch- with branch change"
