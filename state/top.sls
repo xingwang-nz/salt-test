@@ -22,7 +22,7 @@ base:
 #    - hello
     
 dev:
-  'server_role:nginx-server':
+  'server_role:logstash-server':
     - match: grain
 #    - create-user-accounts    
 #    - server-init
