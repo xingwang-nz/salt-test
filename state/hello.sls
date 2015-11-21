@@ -1,14 +1,14 @@
 {% import 'lib.sls' as lib %}
 {% set message = salt['pillar.get']('hello_message') + 'master branch' %}
 
-echo-hello:
+echo-hello-pillar:
   cmd.run:
-    - name: echo "{{ message }} - with branch change"
+    - name: echo "{{ salt['pillar.get']('hello_message') }}"
 
-echo-server-role:
+echo-hello-state:
   cmd.run:
-    - name: echo "server role- {{ salt['pillar.get']('hello_message') }}  master branch- with branch change"
+    - name: echo "master hello state with branch changes - 1"
     
 echo-minion-id:
   cmd.run:
-    - name: echo "grain id- {{ lib.id }}  master branch- with branch change"
+    - name: echo "grain id- {{ lib.id }}"
