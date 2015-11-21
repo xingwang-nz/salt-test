@@ -8,9 +8,8 @@ echo-hello:
 echo-server-role:
   cmd.run:
 #    - name: echo "server role"
-    - name: echo server role: {{ salt['pillar.get']('hello_message') }}  master branch
+    - name: echo "server role- {{ salt['pillar.get']('hello_message') }}  master branch"
     
 echo-minion-id:
   cmd.run:
-    - name: echo "grain id"
-    #- name: echo "grain id: {{ lib.id }}  master branch"
+    - name: echo "grain id- {{ lib.id }}  master branch"
