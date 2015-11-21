@@ -7,7 +7,7 @@ echo-hello-pillar:
 
 echo-hello-state:
   cmd.run:
-    - name: echo "master hello state with branch changes - 1"
+    - name: echo "master hello state with branch changes - 2"
     
 echo-minion-id:
   cmd.run:
