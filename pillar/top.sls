@@ -1,16 +1,16 @@
 base:
-  '*':
-    - server-common
+#  '*':
+#    - server-common
   'ubuntu-salt-minion-1,ubuntu-salt-minion-2':
     - match: list
-#    - server-common  
+    - server-common  
     - ubuntu-salt-minion
 
 
 dev:
-  '*':
-    - server-common
+#  '*':
+#    - server-common
   'ubuntu-logstash':
     - match: list
-#    - server-common
+    - server-common
     - ubuntu-logstash         
