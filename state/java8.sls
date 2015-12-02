@@ -13,7 +13,7 @@ oracle-license-select:
     - unless: which java
     - name: '/bin/echo /usr/bin/debconf shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections'
     - require_in:
-      - pkg: oracle-java7-installer
+      - pkg: oracle-java8-installer
       - cmd: oracle-license-seen-lie
  
 oracle-license-seen-lie:
