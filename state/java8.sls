@@ -1,7 +1,7 @@
 #this state file install jdk1.8
 {% import 'lib.sls' as lib with context %}
 
-{% if lib.isKeyServer() == "True" %}
+{% if lib.isKeycloakServer() == "True" %}
 # add PPA  
 oracle-ppa:
   pkgrepo.managed:
