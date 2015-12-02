@@ -22,7 +22,7 @@ oracle-license-seen-lie:
     - require_in:
       - pkg: oracle-java8-installer
  
-oracle-java7-installer:
+oracle-java8-installer:
   pkg:
     - installed
     - require:
