@@ -2,7 +2,7 @@
 
 {% set rsyslog_config_file = '/etc/rsyslog.conf' %} 
 
-{% if lib.isTmsServer() == "True" or lib.isNginxServer() == "True" %}
+{% if lib.isTmsServer() == "True" or lib.isNginxServer() == "True" or lib.isKeycloakServer() == "True" %}
 install-rsyslog:
   pkg.installed:
     - name: rsyslog
