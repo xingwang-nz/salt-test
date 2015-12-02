@@ -25,6 +25,14 @@
   {%- endif -%}
 {%- endmacro %}
 
+{% macro isKeycloakServer() -%}
+  {%- if server_role == 'keycloak-server' -%}
+    True
+  {%- else -%}
+    False
+  {%- endif -%}
+{%- endmacro %}
+
 {% if server_role == 'nginx-server' %}
   {% set nginx_conf_filename = 'tms-nginx.conf' %}
 {% elif server_role == 'logstash-server' %}

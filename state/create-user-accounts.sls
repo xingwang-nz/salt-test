@@ -15,6 +15,22 @@ create-tomcat-user:
     - require:
       - group: create-tomcat-group
 {% endif %}
+
+# for keycloak
+{% if lib.isKeycloakServer() == "True" %}
+create-keycloak-group:
+  group.present:
+    - name: keycloak
+    
+create-keycloak-user:
+  user.present:
+    - name: keycloak
+    - shell: /usr/sbin/nologin
+    - groups:
+      - keycloak
+    - require:
+      - group: create-keycloak-group
+{% endif %}
       
 {% for username, details in salt['pillar.get']('ec2_server:user_accounts').items() %}
 create-group-{{ username }}:
@@ -32,11 +48,14 @@ create-user-{{ username }}:
       - {{ username }}
 {% if lib.isTmsServer() == "True" %}        
       - tomcat
-{% endif %}      
+{% endif %}
+{% if lib.isKeycloakServer() == "True" %}        
+      - keycloak
+{% endif %}    
       - users
-      {% if details.get('is_sudo') == True %}
+{% if details.get('is_sudo') == True %}
       - sudo
-      {% endif %}
+{% endif %}
     - require:
       - group: create-group-{{ username }}
 {% if lib.isTmsServer() == "True" %}       

@@ -13,7 +13,15 @@ base:
 #    - server-init
 #    - api-doc
     - hello    
-    
+
+  'server_role:keycloak-server':
+    - match: grain
+    - create-user-accounts
+    - server-init
+    - java8
+#    - api-doc
+ 
+        
 #  'server_role:logstash-server':
 #    - match: grain
 #    - create-user-accounts
