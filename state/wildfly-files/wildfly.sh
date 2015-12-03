@@ -59,7 +59,7 @@ fi
 
 # Location of wildfly
 if [ -z "$JBOSS_HOME" ]; then
-	JBOSS_HOME="/user/local/wildfly"
+	JBOSS_HOME="/usr/local/wildfly"
 fi
 export JBOSS_HOME
 
