@@ -20,14 +20,14 @@ create-tomcat-user:
 {% if lib.isKeycloakServer() == "True" %}
 create-keycloak-group:
   group.present:
-    - name: keycloak
+    - name: wildfly
     
 create-keycloak-user:
   user.present:
-    - name: keycloak
+    - name: wildfly
     - shell: /usr/sbin/nologin
     - groups:
-      - keycloak
+      - wildfly
     - require:
       - group: create-keycloak-group
 {% endif %}
@@ -42,8 +42,8 @@ create-user-{{ username }}:
     - name: {{ username }}
     - shell: /bin/bash
     - home: /home/{{ username }}
-    - uid: {{ details.get('uid', '') }}
-    - gid: {{ details.get('gid', '') }}
+#    - uid: {{ details.get('uid', '') }}
+#    - gid: {{ details.get('gid', '') }}
     - groups:
       - {{ username }}
 {% if lib.isTmsServer() == "True" %}        
@@ -51,7 +51,7 @@ create-user-{{ username }}:
 {% endif %}
 {% if lib.isKeycloakServer() == "True" %}        
       - keycloak
-{% endif %}    
+{% endif %}
       - users
 {% if details.get('is_sudo') == True %}
       - sudo

@@ -13,9 +13,10 @@ ec2_server:
       is_sudo: True
       
 tms_db:
-  host: test-db-host
+  host: 172.25.110.97
   port: 5432
   dbname: tms_server_db
+  keycloak_dbname: keycloak
     
 ssl: 
   protocols:

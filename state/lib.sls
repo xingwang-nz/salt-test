@@ -56,5 +56,8 @@
 {% set db_username = salt['pillar.get']('tms_db:username') %}
 {% set db_password = salt['pillar.get']('tms_db:password') %}
 
+{% set keycloak_dbname = salt['pillar.get']('tms_db:keycloak_dbname') %}
+{% set keycloak_db_username = salt['pillar.get']('tms_db:keycloak_username') %}
+{% set keycloak_db_password = salt['pillar.get']('tms_db:keycloak_password') %}
 
 

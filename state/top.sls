@@ -18,8 +18,9 @@ base:
     - match: grain
     - create-user-accounts
     - server-init
+    - keycloak-db-init
     - java8
-#    - api-doc
+    - wildfly
  
         
 #  'server_role:logstash-server':
