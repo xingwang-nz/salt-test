@@ -1,6 +1,6 @@
 {% import 'lib.sls' as lib with context %}
 
-{% if lib.isTmsServer() == "True" %}
+{% if lib.isTmsServer() == "True" or lib.isKeycloakServer() == "True" %}
 #add ppa for postgresql-client9.4:
 add-postgresql-repository:
   file.managed:
