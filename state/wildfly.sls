@@ -67,8 +67,8 @@ upload-wildfly-standalone-xml:
   file.managed:
     - name: {{ wildfly_home }}/standalone/configuration/standalone.xml
     - source: salt://wildfly-files/standalone.xml
-    - user: wildfile
-    - group: wildfile
+    - user: wildfly
+    - group: wildfly
     - mode: 755
     - template: jinja
     - require:
