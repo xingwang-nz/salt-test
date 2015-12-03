@@ -20,7 +20,7 @@ base:
     - server-init
     - keycloak-db-init
     - java8
-#    - wildfly
+    - wildfly
  
         
 #  'server_role:logstash-server':
