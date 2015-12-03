@@ -140,7 +140,7 @@
         <subsystem xmlns="urn:jboss:domain:datasources:3.0">
             <datasources>
                 <datasource jta="false" jndi-name="java:jboss/datasources/KeycloakDS" pool-name="KeycloakDS" enabled="true" use-ccm="false" use-java-context="true">
-                    <connection-url>jdbc:postgresql://{{ lib.dbhost }}:5432/{{ keycloak_dbname }}</connection-url>
+                    <connection-url>jdbc:postgresql://{{ lib.dbhost }}:5432/{{ lib.keycloak_dbname }}</connection-url>
                     <driver-class>org.postgresql.Driver</driver-class>
                     <driver>postgresql</driver>
                     <pool>
@@ -149,8 +149,8 @@
                         <prefill>false</prefill>
                     </pool>
                     <security>
-                        <user-name>{{ keycloak_db_username }}</user-name>
-                        <password>{{ keycloak_db_password }}</password>
+                        <user-name>{{ lib.keycloak_db_username }}</user-name>
+                        <password>{{ lib.keycloak_db_password }}</password>
                     </security>
                     <validation>
                         <validate-on-match>false</validate-on-match>
