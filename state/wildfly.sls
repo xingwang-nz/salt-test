@@ -72,7 +72,7 @@ upload-wildfly-standalone-xml:
     - mode: 755
     - template: jinja
     - require:
-      - file: create-wildfiy-link
+      - file: create-wildfly-link
 
 change-owner-to-wildfly:
   file.directory:
