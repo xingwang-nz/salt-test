@@ -1,61 +1,28 @@
-upstream keycloak_server {
-
-    server 172.25.120.59:8080 max_fails=1 fail_timeout=10s;
-
-}
-
-
-
-
-upstream ics_server {
-
-    server 172.25.110.97:8080 max_fails=1 fail_timeout=10s;
-
-}
+{% set ssl_protocols = salt['pillar.get']('ssl:protocols') %}
+{% set content_server_domain_name = salt['pillar.get']('ec2_server:content_server_domain_name') %}
+{% set s3_bucket_name = salt['pillar.get']('tms:s3_bucket') %}
+{% set s3_domain_name = 's3-ap-southeast-2.amazonaws.com' %}
+{% set tomcat_server_hosts = salt['pillar.get']('ec2_server:tomcat_server_hosts') %}
 
 upstream tomcat_server {
-
-    server 172.25.115.108:8080 max_fails=1 fail_timeout=10s;
-
+	{% for tomcat_server_host in tomcat_server_hosts %}	
+    server {{ tomcat_server_host }}:8080 max_fails=1 fail_timeout=10s;
+    {% endfor %}
 }
 
 server {
         listen  80;
         listen  [::]:80;
-#        return  301 https://$host$request_uri;
+#       return  301 https://$host$request_uri;
 
+        proxy_pass_request_headers      on;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header        Authorization '';
 
-################################################################################
-#        proxy_pass_request_headers      on;
-#        proxy_set_header X-Real-IP $remote_addr;
-#        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-#        proxy_set_header X-Forwarded-Proto $scheme;
-#       proxy_set_header HTTP_AUTHORIZATION $http_authorization;
-
-#        root /usr/share/nginx/ics-api-doc;
-#        location = / {
-#                #return 301 $scheme://$host/api-doc;
-#               try_files $uri $uri/index.html;
-#        }
-
-
- #        location  /ics-web {
-#               rewrite ^(.*)$ $1?realm=bp break;
-#                proxy_pass http://ics_server;
-#        }
-
- #        location  /ics-api {
- #                proxy_pass http://ics_server;
- #       }
-
-        location = /ics-doc {
-                if ($args = "") {
-                        rewrite ^(.*)$ $1?realm=test break;
-                }
-                if ($args !~ "realm=") {
-                           set $args $args&realm=test;
-                }
-                #index index.html;
+        root /usr/share/nginx/ics-api-doc;
+        location = / {
                 try_files $uri $uri/index.html;
         }
 
@@ -87,7 +54,7 @@ server {
         #server_name localhost;
         access_log /var/log/nginx/access.log combined;
         error_log /var/log/nginx/error.log error;
-
+        
         #by default, nginx root is /usr/share/nginx/html
         #root /usr/share/nginx/html
         error_page 502 =503 /503.html;
@@ -105,10 +72,11 @@ server {
         ssl_session_cache shared:SSL:20m;
         ssl_session_timeout 10m;
 
+
         ssl_prefer_server_ciphers       on;
-        ssl_protocols                   TLSv1 TLSv1.1 TLSv1.2;
+        ssl_protocols                   {{ ssl_protocols|join(" ") }};
         #ssl_ciphers                     ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:!aNULL:!eNULL:!EXPORT:!DSS:!DES:!RC4:!3DES:!MD5:!PSK;
-        ssl_ciphers                                             ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-RSA-RC4-SHA:AES128-GCM-SHA256:HIGH:!RC4:!MD5:!aNULL:!EDH:!CAMELLIA:!3DES;
+        ssl_ciphers						ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-RSA-RC4-SHA:AES128-GCM-SHA256:HIGH:!RC4:!MD5:!aNULL:!EDH:!CAMELLIA:!3DES;
 
         add_header Strict-Transport-Security "max-age=31536000";
 
@@ -117,19 +85,7 @@ server {
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
         proxy_set_header HTTP_AUTHORIZATION $http_authorization;
-
-
-
-        location /auth {
-                real_ip_header    X-Forwarded-For;
-                proxy_set_header Host $host;
-                proxy_pass http://keycloak_server;
-proxy_set_header X-Forwarded-For 172.25.120.59;
-proxy_set_header X-Forwarded-Proto https;
-        }
-
-
-
+        
         # redirect root url to /$host/sdemo
         location = / {
                 return 301 https://$host/sdemo;
@@ -139,32 +95,29 @@ proxy_set_header X-Forwarded-Proto https;
                 proxy_pass http://tomcat_server;
                 #proxy_next_upstream error timeout invalid_header http_500 http_502 http_503 http_504;
         }
-        
+
+
         location /config {
 
                 rewrite ^/config/(/?)(.*) /$2 break;
 
-                proxy_set_header        Host invenco-nz-qa-tmsfiles-configuration-target.s3-ap-southeast-2.amazonaws.com;
-                proxy_pass              https://invenco-nz-qa-tmsfiles-configuration-target.s3-ap-southeast-2.amazonaws.com;
+                proxy_set_header        Host {{ s3_bucket_name }}.{{ s3_domain_name }};
+                proxy_pass              https://{{ s3_bucket_name }}.{{ s3_domain_name }};
         }
 
         location /softwarerelease {
 
                 rewrite ^/softwarerelease/(/?)(.*) /$2 break;
 
-                proxy_set_header        Host s3-ap-southeast-2.amazonaws.com;
-                proxy_pass              https://s3-ap-southeast-2.amazonaws.com;
+                proxy_set_header        Host {{ s3_domain_name }};
+                proxy_pass              https://{{ s3_domain_name }};
 
         }
-
+        
         #static content
         location /content/ {
                 root   /opt/memribox;
         }
-
-
-
+        
 
 }
-                                                                                                                                                       170,1         Bot
-        

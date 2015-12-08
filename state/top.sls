@@ -12,6 +12,7 @@ base:
 #    - create-user-accounts    
 #    - server-init
 #    - api-doc
+#    - nginx 
     - hello    
 
   'server_role:keycloak-server':

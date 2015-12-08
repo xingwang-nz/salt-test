@@ -1,3 +1,11 @@
+realms:
+  TestRealmOne:
+    domain_name: invenco-nz-stage.tms.invenco.com
+    content_server_doamin_name: invenco-nz-stage-content.tms.invenco.com
+  TestRealmTwo:
+    domain_name: invenco-nz-stage2.tms.invenco.com
+    content_server_doamin_name: invenco-nz-stage2-content.tms.invenco.com
+    
 ec2_server:
   time_zone: Pacific/Auckland
   tms_server_domain_name: invenco-nz-stage.tms.invenco.com
