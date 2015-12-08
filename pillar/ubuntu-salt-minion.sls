@@ -1,5 +1,5 @@
 realms:
-  TestRealmZero:
+  demo:
     domain_name: 172.25.125.19
     content_server_doamin_name: 172.25.125.20
   TestRealmOne:
