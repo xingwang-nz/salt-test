@@ -25,6 +25,6 @@ echo-{{ realm }}-content_server_doamin_name:
 
 genetate-servers:
   cmd.run:
-    - name: echo "server_name{% for realm, details in salt['pillar.get']('realms').items() %} {{ details.get('content_server_doamin_name') }} {% endfor %};"
+    - name: echo "server_name{% for realm, details in salt['pillar.get']('realms').items() %} {{ details.get('content_server_doamin_name') }}{% endfor %};"
 
   
