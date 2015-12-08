@@ -21,4 +21,4 @@ echo-{{ realm }}-domain-name:
 echo-{{ realm }}-content_server_doamin_name:
   cmd.run:
     - name: echo "content_server_doamin_name - {{ details.get('content_server_doamin_name') }}"    
-{% endif %}  
+{% endfor %}  
