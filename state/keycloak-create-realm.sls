@@ -12,9 +12,7 @@ copy-kcbootstrap-properties-file:
 {% else %}    
     - source: salt://wildfly-files/kcbootstrap-tomcat-server.properties
 {% endif %}
-    - user: wildfly
-    - group: wildfly
-    - mode: 644
+    - mode: 755
     - template: jinja
 
 {% if lib.isNginxServer() == "True" %}
