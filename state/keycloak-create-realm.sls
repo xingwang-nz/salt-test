@@ -28,7 +28,7 @@ create-keycloak-config-file-folder:
 #  cmd.run:
 #    - name: java -cp {{ lib.keycloak_bin_folder }}/{{ lib.keycloak_bootstrap_jar }} com.invenco.ics.keycloak.main.KeycloakBootstrapLauncher  "{{ lib.keycloak_bin_folder }}/kcbootstrap.properties" "{{ realm }}" {% if lib.isNginxServer() == "True" %}"tms-web"{% else %}"ics-service"{% endif %}
 #    - require:
-#      - file:copy-kcbootstrap-properties-file
+#      - file: copy-kcbootstrap-properties-file
 {% endfor %}
 
   
