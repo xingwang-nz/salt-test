@@ -6,6 +6,8 @@
 ################################################################################
 {% import 'lib.sls' as lib with context %}
 
+{% set admin_current_password = salt['pillar.get']('keycloak_admin_current_password') %}
+
 {% set sql_command = 'psql -U ' + lib.keycloak_db_username + ' -h ' + lib.dbhost + ' -d ' + lib.keycloak_dbname + ' -c' %}
 
 {% if lib.isKeycloakServer() == "True" %}
@@ -19,4 +21,7 @@ delete-update-password-user-action:
       - PGPASSWORD: {{ lib.keycloak_db_password }}
     - unless: {{ sql_command }} "SELECT required_action FROM user_required_action where required_action='UPDATE_PASSWORD';" | grep  UPDATE_PASSWORD
 
+change-keycloak-admin-password:
+  cmd.run:
+    - name java -cp {{ lib.keycloak_bin_folder }}/{{ lib.keycloak_bootstrap_jar }} com.invenco.ics.keycloak.main.KeycloakChangePasswordLauncher "{{ salt['pillar.get']('keycloak:host') }}/auth" {{ salt['pillar.get']('keycloak:admin:username') }} {{ admin_current_password }} {{ salt['pillar.get']('keycloak:admin:password') }} "security-admin-console"
 {% endif %}      

@@ -8,6 +8,13 @@ realms:
   TestRealmTwo:
     domain_name: invenco-nz-stage2.tms.invenco.com
     content_server_doamin_name: invenco-nz-stage2-content.tms.invenco.com
+
+keycloak:
+  hots: 172.25.120.59:8080
+  admin:
+    username: admin
+    password: Password1
+
     
 ec2_server:
   time_zone: Pacific/Auckland
