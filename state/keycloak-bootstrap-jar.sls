@@ -21,9 +21,7 @@ copy-keycloak-bootstrap-jar:
   file.managed:
     - name: {{ lib.keycloak_bin_folder }}/{{ lib.keycloak_bootstrap_jar }}
     - source: salt://wildfly-files/{{ keycloak_bootstrap_jar_source }}
-    - user: wildfly
-    - group: wildfly
-    - mode: 644
+    - mode: 755
     - template: jinja
     - require:
       - file: create-keycloak-bin-folder
