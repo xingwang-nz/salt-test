@@ -61,3 +61,9 @@
 {% set keycloak_db_password = salt['pillar.get']('tms_db:keycloak_password') %}
 
 
+{% set keycloak_files_root_folder = '/usr/local/ics/keycloak' %}
+{% set keycloak_bin_folder = keycloak_files_root_folder + '/bin' %}
+{% set keycloak_config_folder = keycloak_files_root_folder + '/config' %}
+{% set keycloak_bootstrap_jar = 'ics-keycloak-bootstrap.jar' %}
+
+
