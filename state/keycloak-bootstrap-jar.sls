@@ -2,7 +2,7 @@
 
 {% set keycloak_bootstrap_jar_source = 'ics-keycloak-bootstrap-0.0.1.jar' %}
 
-{% if lib.isKeycloakServer() == "True" %}
+{% if lib.isKeycloakServer() == "True" or lib.isNginxServer() == "True" or lib.isTmsServer() == "True" %}
 # create keycloak folder
 create-keycloak-bin-folder:
   file.directory:
