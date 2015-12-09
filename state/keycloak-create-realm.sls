@@ -7,11 +7,7 @@ include:
 copy-kcbootstrap-properties-file:
   file.managed:
     - name: {{ lib.keycloak_bin_folder }}/kcbootstrap.properties
-{% if lib.isNginxServer() == "True" %}
-    - source: salt://wildfly-files/kcbootstrap-nginx-server.properties    
-{% else %}    
-    - source: salt://wildfly-files/kcbootstrap-tomcat-server.properties
-{% endif %}
+    - source: salt://wildfly-files/kcbootstrap.properties
     - mode: 755
     - template: jinja
 
