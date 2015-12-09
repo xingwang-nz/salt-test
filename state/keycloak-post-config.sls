@@ -23,5 +23,5 @@ delete-update-password-user-action:
 
 change-keycloak-admin-password:
   cmd.run:
-    - name "java -cp {{ lib.keycloak_bin_folder }}/{{ lib.keycloak_bootstrap_jar }} com.invenco.ics.keycloak.main.KeycloakChangePasswordLauncher "{{ salt['pillar.get']('keycloak:host') }}/auth" {{ salt['pillar.get']('keycloak:admin:username') }} {{ admin_current_password }} {{ salt['pillar.get']('keycloak:admin:password') }} "security-admin-console""
+    - name: java -cp {{ lib.keycloak_bin_folder }}/{{ lib.keycloak_bootstrap_jar }} com.invenco.ics.keycloak.main.KeycloakChangePasswordLauncher "{{ salt['pillar.get']('keycloak:host') }}/auth" {{ salt['pillar.get']('keycloak:admin:username') }} {{ admin_current_password }} {{ salt['pillar.get']('keycloak:admin:password') }} "security-admin-console"
 {% endif %}      
