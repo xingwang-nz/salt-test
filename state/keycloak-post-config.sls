@@ -6,8 +6,17 @@
 ################################################################################
 {% import 'lib.sls' as lib with context %}
 
+{% set sql_command = 'psql -U ' + lib.keycloak_db_username + ' -h ' + lib.dbhost + ' -d ' + lib.keycloak_dbname + ' -c' %}
+
 {% if lib.isKeycloakServer() == "True" %}
 include:
   - keycloak-bootstrap-jar
+
+delete-update-password-user-action:
+  cmd.run:
+    - name: {{ sql_command }} "delete from user_required_action where required_action = 'UPDATE_PASSWORD';"
+    - env:
+      - PGPASSWORD: {{ lib.keycloak_db_password }}
+    - unless: {{ sql_command }} "SELECT required_action FROM user_required_action where required_action='UPDATE_PASSWORD';" | grep  UPDATE_PASSWORD
 
 {% endif %}      
