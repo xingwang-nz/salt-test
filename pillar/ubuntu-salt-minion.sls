@@ -1,7 +1,7 @@
 realms:
-#  demo:
-#    domain_name: 172.25.125.19
-#    content_server_doamin_name: 172.25.125.20
+  demo:
+    domain_name: 172.25.125.19
+    content_server_doamin_name: 172.25.125.20
   TestRealmOne:
     domain_name: invenco-nz-stage.tms.invenco.com
     content_server_doamin_name: invenco-nz-stage-content.tms.invenco.com
