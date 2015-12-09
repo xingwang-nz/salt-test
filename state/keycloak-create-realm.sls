@@ -11,11 +11,19 @@ copy-kcbootstrap-properties-file:
     - source: salt://wildfly-files/kcbootstrap-nginx-server.properties    
 {% else %}    
     - source: salt://wildfly-files/kcbootstrap-tomcat-server.properties
-{% endif %}    
+{% endif %}
     - user: wildfly
     - group: wildfly
     - mode: 644
     - template: jinja
+
+{% if lib.isNginxServer() == "True" %}
+create-keycloak-config-file-folder:
+  file.directory:
+    - name: /usr/share/nginx/html/keycloak
+    - mode: 755
+    - makedirs: True
+{% endif %}    
 
 {% for realm, details in salt['pillar.get']('realms').items() %}
 create-realm-{{ realm }}:
