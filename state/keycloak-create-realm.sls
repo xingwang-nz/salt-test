@@ -41,6 +41,22 @@ create-realm-{{ realm }}:
       - file: copy-kcbootstrap-properties-file
 {% endfor %}
 
-  
+
+{% if lib.isTmsServer() == "True" %}
+#restart tomcat
+stop-tomcat-reload-keycloak-config:
+  cmd.run:
+    - onlyif: ls /etc/init.d/tomcat | grep tomcat
+    - name: sudo /etc/init.d/tomcat stop
+
+wait-for-stop-tomcat-reload-keycloak-config:
+  cmd.run:
+    - name: sleep 10
+
+start-tomcat-reload-keycloak-config:
+  cmd.run:
+    - onlyif: ls /etc/init.d/tomcat | grep tomcat
+    - name: sudo /etc/init.d/tomcat start       
+{% endif %}  
 
 {% endif %}    
