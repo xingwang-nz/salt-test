@@ -1,5 +1,12 @@
 {% import 'lib.sls' as lib with context %}
 
+{% set force_reload_keycloak_config = salt['pillar.get']('force_reload_keycloak_config') %}
+{% if force_reload_keycloak_config == 'True' or force_reload_keycloak_config == 'true' %}
+  {% set is_force_reload_config =  'True' %}
+{% else %}  
+  {% set is_force_reload_config =  'False' %}
+{% endif %}
+
 {% if lib.isNginxServer() == "True" or lib.isTmsServer() == "True" %}
 include:
   - keycloak-bootstrap-jar
@@ -22,6 +29,13 @@ create-keycloak-config-file-folder:
 {% for realm, details in salt['pillar.get']('realms').items() %}
 create-realm-{{ realm }}:
   cmd.run:
+  {% if is_force_reload_config == 'False' %}
+    {% if lib.isNginxServer() == "True" %}
+    - unless: ls /usr/share/nginx/html/keycloak/{{ realm }}-keycloak.json | grep "{{ realm }}-keycloak.json"
+    {% else %} 
+    - unless: ls {{ lib.keycloak_config_folder }}/{{ realm }}-keycloak.json | grep "{{ realm }}-keycloak.json"
+    {% endif %}  
+  {% endif %}
     - name: java -cp {{ lib.keycloak_bin_folder }}/{{ lib.keycloak_bootstrap_jar }} com.invenco.ics.keycloak.main.KeycloakBootstrapLauncher  "{{ lib.keycloak_bin_folder }}/kcbootstrap.properties" "{{ realm }}" {% if lib.isNginxServer() == "True" %}"tms-web"{% else %}"ics-service"{% endif %}
     - require:
       - file: copy-kcbootstrap-properties-file

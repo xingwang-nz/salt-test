@@ -16,7 +16,6 @@ create-keycloak-config-folder:
     - mode: 755
     - makedirs: True
     
-# create api-doc niginx files root folder
 copy-keycloak-bootstrap-jar:
   file.managed:
     - name: {{ lib.keycloak_bin_folder }}/{{ lib.keycloak_bootstrap_jar }}
