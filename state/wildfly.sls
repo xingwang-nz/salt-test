@@ -120,5 +120,15 @@ wait-for-wildfly-service:
   cmd.run:
     - name: sleep 10
                 
-             
+stop-wildfly-service:
+  cmd.run:
+    - name: sudo service wildfly stop
+
+wait-for-wildfly-service-stop:
+  cmd.run:
+    - name: sleep 5
+    
+restart-wildfly-service:
+  cmd.run:
+    - name: sudo service wildfly start 
 {% endif %} 
