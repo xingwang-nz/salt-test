@@ -74,6 +74,17 @@ upload-wildfly-standalone-xml:
     - require:
       - file: create-wildfly-link
 
+upload-keycloak-server-json:
+  file.managed:
+    - name: {{ wildfly_home }}/standalone/configuration/skeycloak-server.json
+    - source: salt://wildfly-files/skeycloak-server.json
+    - user: wildfly
+    - group: wildfly
+    - mode: 755
+    - template: jinja
+    - require:
+      - file: create-wildfly-link
+      
 change-owner-to-wildfly:
   file.directory:
     - name: {{ wildfly_extracted_folder }}
@@ -97,11 +108,13 @@ wildfly-service:
       - file: upload-postgresql-jdbc-driver
       - file: upload-postgresql-jdbc-driver-module-xml
       - file: upload-wildfly-standalone-xml
+      - file: upload-keycloak-server-json
     - watch:
       - file: upload-wildfly-service-start-stop-script
       - file: upload-postgresql-jdbc-driver
       - file: upload-postgresql-jdbc-driver-module-xml
-      - file: upload-wildfly-standalone-xml  
+      - file: upload-wildfly-standalone-xml
+      - file: upload-keycloak-server-json  
 
 wait-for-wildfly-service:
   cmd.run:
