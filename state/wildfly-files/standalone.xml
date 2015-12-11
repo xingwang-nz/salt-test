@@ -123,7 +123,9 @@
             </logger>
             <logger category="org.keycloak.events">
                 <level name="INFO"/>
-                <handler name="FILE_EVENT"/>
+                <handlers>
+                    <handler name="FILE_EVENT"/>
+                 </handlers>  
             </logger>
             <root-logger>
                 <level name="INFO"/>
