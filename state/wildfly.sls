@@ -77,7 +77,7 @@ upload-wildfly-standalone-xml:
 upload-keycloak-server-json:
   file.managed:
     - name: {{ wildfly_home }}/standalone/configuration/keycloak-server.json
-    - source: salt://wildfly-files/skeycloak-server.json
+    - source: salt://wildfly-files/keycloak-server.json
     - user: wildfly
     - group: wildfly
     - mode: 755
