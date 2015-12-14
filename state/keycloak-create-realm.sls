@@ -13,6 +13,8 @@
 
 {% set keycloak_server_domain = salt['pillar.get']('keycloak_server:domain_name') %}
 
+{% set java_command = 'java -cp ' + lib.keycloak_bin_folder/lib.keycloak_bootstrap_jar + ' com.invenco.ics.keycloak.main.KeycloakCreateClientLauncher' %}
+
 
 {% if lib.isNginxServer() == "True" or lib.isTmsServer() == "True" %}
 include:
@@ -39,10 +41,16 @@ create-realm-{{ realm }}:
   {% if is_force_reload_config == 'False' %}
     {% if lib.isNginxServer() == "True" %}
     - unless: ls /usr/share/nginx/html/keycloak/{{ realm }}-keycloak.json | grep "{{ realm }}-keycloak.json"
-    - name: java -cp {{ lib.keycloak_bin_folder }}/{{ lib.keycloak_bootstrap_jar }} com.invenco.ics.keycloak.main.KeycloakCreateClientLauncher  "{{ lib.keycloak_bin_folder }}/kcbootstrap.properties" "{{ realm }}" "{{ ics_web_type }}" "https://{{ details.get('domain_name') }}/{{ ics_web }}" "https://{{ keycloak_server_domain }}/auth"
+    - name: {{ java_command }} "{{ lib.keycloak_bin_folder }}/kcbootstrap.properties" "{{ realm }}" "{{ ics_web_type }}" "https://{{ details.get('domain_name') }}/{{ ics_web }}" "https://{{ keycloak_server_domain }}/auth"
     {% else %}
     - unless: ls {{ lib.keycloak_config_folder }}/{{ realm }}-keycloak.json | grep "{{ realm }}-keycloak.json"
-    - name: java -cp {{ lib.keycloak_bin_folder }}/{{ lib.keycloak_bootstrap_jar }} com.invenco.ics.keycloak.main.KeycloakCreateClientLauncher  "{{ lib.keycloak_bin_folder }}/kcbootstrap.properties" "{{ realm }}" "{{ ics_service_type }}"
+    - name: {{ java_command }} "{{ lib.keycloak_bin_folder }}/kcbootstrap.properties" "{{ realm }}" "{{ ics_service_type }}"
+    {% endif %}
+  {% else %}
+    {% if lib.isNginxServer() == "True" %}
+    - name: {{ java_command }} "{{ lib.keycloak_bin_folder }}/kcbootstrap.properties" "{{ realm }}" "{{ ics_web_type }}" "https://{{ details.get('domain_name') }}/{{ ics_web }}" "https://{{ keycloak_server_domain }}/auth"
+    {% else %}
+    - name: {{ java_command }} "{{ lib.keycloak_bin_folder }}/kcbootstrap.properties" "{{ realm }}" "{{ ics_service_type }}"
     {% endif %}  
   {% endif %}
     
