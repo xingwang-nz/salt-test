@@ -89,6 +89,9 @@ copy-custom-theme:
   file.recurse:
     - name: {{ wildfly_home }}/standalone/configuration/themes/invenco
     - source: salt://wildfly-files/theme/invenco
+    - user: wildfly
+    - dir_mode: 755
+    - file_mode: 755
     - include_empty: True
     - require:
       - archive: create-wildfly-link
