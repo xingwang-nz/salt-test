@@ -8,7 +8,6 @@
 {% endif %}
 
 {% set ics_web = 'tms-web' %}
-
 {% set ics_web_type = 'TMS_WEB' %}
 {% set ics_service_type = 'ICS_SERVICE' %}
 
