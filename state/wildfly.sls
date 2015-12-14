@@ -98,6 +98,12 @@ change-owner-to-wildfly:
     - unless:
       - stat -c "%U" {{ wildfly_extracted_folder }} | grep wildfly
 
+copy-custom-theme:
+  file.recurse:
+    - name: {{ wildfly_home }}/standalone/configuration/themes/invenco
+    - source: salt://wildfly-files/theme/invenco
+    - include_empty: True
+
 #start wildfly service            
 wildfly-service:
   service.running:
