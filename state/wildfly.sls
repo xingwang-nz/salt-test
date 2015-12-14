@@ -84,6 +84,14 @@ upload-keycloak-server-json:
     - template: jinja
     - require:
       - file: create-wildfly-link
+
+copy-custom-theme:
+  file.recurse:
+    - name: {{ wildfly_home }}/standalone/configuration/themes/invenco
+    - source: salt://wildfly-files/theme/invenco
+    - include_empty: True
+    - require:
+      - archive: download-wildfly
       
 change-owner-to-wildfly:
   file.directory:
@@ -97,12 +105,6 @@ change-owner-to-wildfly:
       - archive: download-wildfly
     - unless:
       - stat -c "%U" {{ wildfly_extracted_folder }} | grep wildfly
-
-copy-custom-theme:
-  file.recurse:
-    - name: {{ wildfly_home }}/standalone/configuration/themes/invenco
-    - source: salt://wildfly-files/theme/invenco
-    - include_empty: True
 
 #start wildfly service            
 wildfly-service:
