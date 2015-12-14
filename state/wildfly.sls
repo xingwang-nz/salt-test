@@ -91,7 +91,7 @@ copy-custom-theme:
     - source: salt://wildfly-files/theme/invenco
     - include_empty: True
     - require:
-      - archive: download-wildfly
+      - archive: create-wildfly-link
       
 change-owner-to-wildfly:
   file.directory:
