@@ -7,8 +7,8 @@
   {% set is_force_reload_config =  'False' %}
 {% endif %}
 
-{% set ics_web = 'tms-web' %}
-{% set ics_service = 'ics-service' %}
+{% set ics_web = 'TMS_WEB' %}
+{% set ics_service = 'ICS_SERVICE' %}
 
 {% set keycloak_server_domain = salt['pillar.get']('keycloak_server:domain_name') %}
 
