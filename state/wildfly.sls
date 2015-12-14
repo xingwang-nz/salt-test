@@ -94,7 +94,7 @@ copy-custom-theme:
     - file_mode: 755
     - include_empty: True
     - require:
-      - archive: create-wildfly-link
+      - file: create-wildfly-link
       
 change-owner-to-wildfly:
   file.directory:
