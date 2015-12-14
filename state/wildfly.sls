@@ -90,6 +90,7 @@ copy-custom-theme:
     - name: {{ wildfly_home }}/standalone/configuration/themes/invenco
     - source: salt://wildfly-files/theme/invenco
     - user: wildfly
+    - group: wildfly    
     - dir_mode: 755
     - file_mode: 755
     - include_empty: True
