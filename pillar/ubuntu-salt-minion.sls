@@ -1,7 +1,7 @@
 realms:
   demo:
-    domain_name: 172.25.125.19
-    content_server_doamin_name: 172.25.125.20
+    domain_name: 172.25.110.14
+    content_server_doamin_name: 172.25.110.14
   TestRealmOne:
     domain_name: invenco-nz-stage.tms.invenco.com
     content_server_doamin_name: invenco-nz-stage-content.tms.invenco.com
@@ -10,6 +10,7 @@ realms:
     content_server_doamin_name: invenco-nz-stage2-content.tms.invenco.com
 
 keycloak_server:
+  domain_name: 172.25.110.14
   host: 172.25.120.59
   port: 8080
   admin:
