@@ -13,7 +13,7 @@
 
 {% set keycloak_server_domain = salt['pillar.get']('keycloak_server:domain_name') %}
 
-{% set java_command = 'java -cp ' + lib.keycloak_bin_folder/lib.keycloak_bootstrap_jar + ' com.invenco.ics.keycloak.main.KeycloakCreateClientLauncher' %}
+{% set java_command = 'java -cp ' + lib.keycloak_bin_folder + '/' + lib.keycloak_bootstrap_jar + ' com.invenco.ics.keycloak.main.KeycloakCreateClientLauncher' %}
 
 
 {% if lib.isNginxServer() == "True" or lib.isTmsServer() == "True" %}
