@@ -56,7 +56,7 @@ create-realm-{{ realm }}:
     - require:
       - file: copy-kcbootstrap-properties-file
 
-{% if lib.isTmsServer() == "True" %}
+{% if lib.isTmsServer() == "True" and details.get('users') != None %}
 {% for realm_user, realm_user_details in details.get('users').items() %}
 create-realm-{{ realm }}-user-{{ realm_user }}:
   cmd.run:
