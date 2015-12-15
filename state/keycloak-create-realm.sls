@@ -58,8 +58,6 @@ create-realm-{{ realm }}-user-{{ realm_user }}:
 {% endif %}
 
 {% endfor %}
-      
-{% endfor %}
 
 
 {% if lib.isTmsServer() == "True" %}
