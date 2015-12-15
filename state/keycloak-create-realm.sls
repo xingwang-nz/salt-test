@@ -53,9 +53,17 @@ create-realm-{{ realm }}:
     - name: {{ java_command }} "{{ lib.keycloak_bin_folder }}/kcbootstrap.properties" "{{ realm }}" "{{ ics_service_type }}"
     {% endif %}  
   {% endif %}
-    
     - require:
       - file: copy-kcbootstrap-properties-file
+
+{% if lib.isTmsServer() == "True" %}
+{% for realm_user, realm_user_details in details.get('users').items() %}
+create-realm-{{ realm }}-user-{{ realm_user }}:
+  cmd.run:
+    - name: {{ java_command }} "{{ lib.keycloak_bin_folder }}/kcbootstrap.properties" "{{ realm }}" "{{ realm_user }}" "{{ realm_user_details.get('first_name') }}" "{{ realm_user_details.get('last_name') }}" "{{ realm_user_details.get('password') }}" "{{ realm_user_details.get('role') }}"
+{% endfor %}
+{% endif %}
+
 {% endfor %}
 
 
