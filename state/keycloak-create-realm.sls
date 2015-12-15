@@ -15,6 +15,8 @@
 
 {% set java_command = 'java -cp ' + lib.keycloak_bin_folder + '/' + lib.keycloak_bootstrap_jar + ' com.invenco.ics.keycloak.main.KeycloakCreateClientLauncher' %}
 
+{% set java_create_user_command = 'java -cp ' + lib.keycloak_bin_folder + '/' + lib.keycloak_bootstrap_jar + ' com.invenco.ics.keycloak.main.KeycloakCreateUserLauncher' %}
+
 
 {% if lib.isNginxServer() == "True" or lib.isTmsServer() == "True" %}
 include:
@@ -53,7 +55,7 @@ create-realm-{{ realm }}:
 {% for realm_user, realm_user_details in details.get('users').items() %}
 create-realm-{{ realm }}-user-{{ realm_user }}:
   cmd.run:
-    - name: {{ java_command }} "{{ lib.keycloak_bin_folder }}/kcbootstrap.properties" "{{ realm }}" "{{ realm_user }}" "{{ realm_user_details.get('first_name') }}" "{{ realm_user_details.get('last_name') }}" "{{ realm_user_details.get('password') }}" "{{ realm_user_details.get('role') }}"
+    - name: {{ java_create_user_command }} "{{ lib.keycloak_bin_folder }}/kcbootstrap.properties" "{{ realm }}" "{{ realm_user }}" "{{ realm_user_details.get('first_name') }}" "{{ realm_user_details.get('last_name') }}" "{{ realm_user_details.get('password') }}" "{{ realm_user_details.get('role') }}"
 {% endfor %}
 {% endif %}
 
