@@ -7,16 +7,14 @@
   {% set is_force_reload_config =  'False' %}
 {% endif %}
 
-{% set ics_web = 'tms-web' %}
+{% set redirect_ics_web = 'tms-web/*' %}
 {% set ics_web_type = 'TMS_WEB' %}
 {% set ics_service_type = 'ICS_SERVICE' %}
 
 {% set keycloak_server_domain = salt['pillar.get']('keycloak_server:domain_name') %}
 
 {% set java_command = 'java -cp ' + lib.keycloak_bin_folder + '/' + lib.keycloak_bootstrap_jar + ' com.invenco.ics.keycloak.main.KeycloakCreateClientLauncher' %}
-
 {% set java_create_user_command = 'java -cp ' + lib.keycloak_bin_folder + '/' + lib.keycloak_bootstrap_jar + ' com.invenco.ics.keycloak.main.KeycloakCreateUserLauncher' %}
-
 
 {% if lib.isNginxServer() == "True" or lib.isTmsServer() == "True" %}
 include:
@@ -60,6 +58,8 @@ create-realm-{{ realm }}-user-{{ realm_user }}:
 {% endif %}
 
 {% endfor %}
+      
+{% endfor %}
 
 
 {% if lib.isTmsServer() == "True" %}
@@ -79,4 +79,4 @@ start-tomcat-reload-keycloak-config:
     - name: sudo /etc/init.d/tomcat start       
 {% endif %}  
 
-{% endif %}    
+{% endif %}
