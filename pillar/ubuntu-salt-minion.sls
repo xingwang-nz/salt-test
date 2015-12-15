@@ -7,7 +7,7 @@ realms:
         password: Password1
         first_name: Xing
         last_name: Wang
-        role: testrole 
+        role: CONFIG_ADMIN 
   TestRealmOne:
     domain_name: invenco-nz-stage.tms.invenco.com
     content_server_doamin_name: invenco-nz-stage-content.tms.invenco.com

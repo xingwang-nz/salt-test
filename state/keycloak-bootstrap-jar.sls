@@ -1,6 +1,6 @@
 {% import 'lib.sls' as lib with context %}
 
-{% set keycloak_bootstrap_jar_source = 'ics-keycloak-bootstrap-0.0.2.jar' %}
+{% set keycloak_bootstrap_jar_source = 'ics-keycloak-bootstrap-0.0.5.jar' %}
 
 {% if lib.isKeycloakServer() == "True" or lib.isNginxServer() == "True" or lib.isTmsServer() == "True" %}
 # create keycloak folder
