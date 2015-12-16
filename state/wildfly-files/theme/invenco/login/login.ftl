@@ -14,14 +14,12 @@
         
         
   <main class="col-md-9" data-ng-if="desktop">
-   <h1 class="font-300 mt0">Auto update test 2. Monitor your sites. Manage your business.</h1>
-   <p class="lead">Invenco Cloud Services lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    Integer a metus quis libero iaculis viverra non et massa. Vivamus a est nec nisl consequat pellentesque.
-   </p>
+   <!--h1 class="font-300 mt0"></h1>
+   <p class="lead">
+   </p-->
 
-   <div class="well text-center">
-     <h3 class="mt20 mb20">FPO</h3>
-   </div>
+   	<p class="lead">Monitor your sites. Manager your enterprise.</p>
+	<img src="${url.resourcesPath}/img/brand/invenco-cloud-service-login.jpg" alt="Invenco Cloud Services" style="width:100%"> 
   </main>        
         
           <aside class="col-md-3">
