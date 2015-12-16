@@ -1,7 +1,7 @@
 realms:
   demo:
-    domain_name: 172.25.110.14
-    content_server_doamin_name: 172.25.110.14
+    domain_name: 172.25.110.94
+    content_server_doamin_name: 172.25.110.94
     users:
       testuser1:
         password: Password1
