@@ -27,7 +27,7 @@ increase-server-names-hash-bucket-size:
     - name: sudo sed -i '/include \/etc\/nginx\/conf.d\/\*[.]conf;$/i\        server_names_hash_bucket_size   256;' {{ nginx_main_conf_file }}
     - require:
       - pkg: install-nginx
-    - unless: grep "server_names_hash_bucket_size" {{ nginx_main_conf_file }}
+    - unless: grep "server_names_hash_bucket_size   256;" {{ nginx_main_conf_file }}
     
 echo-nginx-setup-config-file-{{ lib.server_role }}:
   cmd.run:
