@@ -12,7 +12,7 @@ realms:
     domain_name: invenco-nz-stage.tms.invenco.com
     content_server_doamin_name: invenco-nz-stage-content.tms.invenco.com
   TestRealmTwo:
-    domain_name: invenco-nz-stage2.tms.invenco.com
+    domain_name: invenco-nz-stage.tms.invenco.com
     content_server_doamin_name: invenco-nz-stage2-content.tms.invenco.com
 
 keycloak_server:
