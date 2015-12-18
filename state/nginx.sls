@@ -1,6 +1,7 @@
 {% import 'lib.sls' as lib with context %}
 
 {% set nginx_conf_folder = '/etc/nginx' %}
+{% set nginx_main_conf_file = nginx_conf_folder + '/nginx.conf' %}
 
 {% set nginx_conf_file = nginx_conf_folder + '/sites-available/' + lib.nginx_conf_filename %}
 {% set nginx_conf_linkfile = nginx_conf_folder + '/sites-enabled/' + lib.nginx_conf_filename %}
@@ -20,6 +21,14 @@ nginx-remove-default-config:
     - require:
       - pkg: install-nginx
 
+# increase server_names_hash_bucket_size  to be 256
+increase-server-names-hash-bucket-size:
+  cmd.run:
+    - name: sudo sed -i '/include \/etc\/nginx\/conf.d\/\*[.]conf;$/i\       increase server_names_hash_bucket_size   256;' {{ nginx_main_conf_file }}
+    - require:
+      - pkg: install-nginx
+    - unless: grep "increase server_names_hash_bucket_size" {{ nginx_main_conf_file }}
+    
 echo-nginx-setup-config-file-{{ lib.server_role }}:
   cmd.run:
     - name: echo "nginx-conf-file={{ lib.nginx_conf_filename }}"

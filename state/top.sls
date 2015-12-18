@@ -11,8 +11,8 @@ base:
     - match: grain
     - create-user-accounts    
     - server-init
-    - java8
-    - keycloak-create-realm
+#    - java8
+#    - keycloak-create-realm
 #    - hello    
 
   'server_role:keycloak-server':
