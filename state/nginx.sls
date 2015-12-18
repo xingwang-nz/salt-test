@@ -24,10 +24,10 @@ nginx-remove-default-config:
 # increase server_names_hash_bucket_size  to be 256
 increase-server-names-hash-bucket-size:
   cmd.run:
-    - name: sudo sed -i '/include \/etc\/nginx\/conf.d\/\*[.]conf;$/i\       increase server_names_hash_bucket_size   256;' {{ nginx_main_conf_file }}
+    - name: sudo sed -i '/include \/etc\/nginx\/conf.d\/\*[.]conf;$/i\        server_names_hash_bucket_size   256;' {{ nginx_main_conf_file }}
     - require:
       - pkg: install-nginx
-    - unless: grep "increase server_names_hash_bucket_size" {{ nginx_main_conf_file }}
+    - unless: grep "server_names_hash_bucket_size" {{ nginx_main_conf_file }}
     
 echo-nginx-setup-config-file-{{ lib.server_role }}:
   cmd.run:
