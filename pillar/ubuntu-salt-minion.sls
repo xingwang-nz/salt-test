@@ -1,24 +1,24 @@
 realms:
   demo:
-    domain_name: 172.25.110.94
-    content_server_doamin_name: 172.25.110.94
+    domain_name: 172.25.125.24
+    content_server_doamin_name: 172.25.125.24
     users:
       testuser1:
         password: Password1
         first_name: Xing
         last_name: Wang
         role: CONFIG_ADMIN 
-  TestRealmOne:
-    domain_name: invenco-nz-stage.tms.invenco.com
-    content_server_doamin_name: invenco-nz-stage-content.tms.invenco.com
-  TestRealmTwo:
-    domain_name: invenco-nz-stage.tms.invenco.com
-    content_server_doamin_name: invenco-nz-stage2-content.tms.invenco.com
+#  TestRealmOne:
+#    domain_name: invenco-nz-stage.tms.invenco.com
+#    content_server_doamin_name: invenco-nz-stage-content.tms.invenco.com
+#  TestRealmTwo:
+#    domain_name: invenco-nz-stage.tms.invenco.com
+#    content_server_doamin_name: invenco-nz-stage2-content.tms.invenco.com
 
 keycloak_server:
 #  domain_name: 172.25.110.14
-  host: 172.25.120.6
-  port: 8080
+  host: 172.25.110.12
+  port: 9080
   admin:
     username: admin
     password: Password1
@@ -28,11 +28,11 @@ ec2_server:
   time_zone: Pacific/Auckland
   tms_server_domain_name: invenco-nz-stage.tms.invenco.com
   
-  content_server_domain_name: 172.25.115.137
+  content_server_domain_name: 172.25.110.12
   
   # tomcat server private host-names(IPs) in AWS, these will be used in nginx load balancer
   tomcat_server_hosts:
-    - 172.25.115.108
+    - 172.25.110.12
   
   user_accounts:
     xing:
