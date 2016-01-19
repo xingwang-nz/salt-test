@@ -19,10 +19,8 @@ base:
     - create-user-accounts    
 #    - server-init
 #    - java8
-{% if setup_keycloak_realm == 'True' %}
 #    - keycloak-setup-realm
     - hello    
-{% endif %}
 #    - hello    
 
   'server_role:keycloak-server':

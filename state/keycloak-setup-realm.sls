@@ -1,5 +1,12 @@
 {% import 'lib.sls' as lib with context %}
 
+{% set setup_keycloak_realm_flag = salt['pillar.get']('setup_kc_realm') %}
+{% if setup_keycloak_realm_flag == 'True' or setup_keycloak_realm_flag == 'true' %}
+  {% set setup_keycloak_realm =  'True' %}
+{% else %}  
+  {% set setup_keycloak_realm =  'False' %}
+{% endif %}
+
 {% set force_reload_keycloak_config = salt['pillar.get']('force_reload_keycloak_config') %}
 {% if force_reload_keycloak_config == 'True' or force_reload_keycloak_config == 'true' %}
   {% set is_force_reload_config =  'True' %}
@@ -13,8 +20,8 @@
 
 {% set keycloak_server_domain = salt['pillar.get']('keycloak_server:domain_name') %}
 
-{% set keycloak_master_admin_username = salt['pillar.get']('keycloak_master_admin_username') %}
-{% set keycloak_master_admin_password = salt['pillar.get']('keycloak_master_admin_password') %}
+{% set keycloak_master_admin_username = salt['pillar.get']('kc_master_admin_username') %}
+{% set keycloak_master_admin_password = salt['pillar.get']('kc_master_admin_password') %}
 
 {% set java_create_realm_command = 'java -cp ' + lib.keycloak_bin_folder + '/' + lib.keycloak_bootstrap_jar + ' com.invenco.ics.keycloak.main.KeycloakCreateClientLauncher' %}
 {% set java_create_user_command = 'java -cp ' + lib.keycloak_bin_folder + '/' + lib.keycloak_bootstrap_jar + ' com.invenco.ics.keycloak.main.KeycloakCreateUserLauncher' %}
@@ -48,7 +55,7 @@ create-realm-{{ realm }}:
     - unless: ls {{ lib.keycloak_config_folder }}/{{ realm }}-keycloak.json | grep "{{ realm }}-keycloak.json"
     {% endif %}
   {% endif %}
-    - name: {{ java_create_realm_command }} "{{ lib.keycloak_bin_folder }}/kcbootstrap.properties" "{{ realm }}" {% if lib.isNginxServer() == "True" %}"{{ ics_web_type }}"{% else %}"{{ ics_service_type }}"{% endif %} {% if keycloak_server_domain != None and keycloak_server_domain != '' %}"https://{{ keycloak_server_domain }}/auth"{% else %}"https://{{ details.get('domain_name') }}/auth"{% endif %} "https://{{ details.get('domain_name') }}/{{ redirect_ics_web }}"    
+    - name: {{ java_create_realm_command }} "{{ lib.keycloak_bin_folder }}/kcbootstrap.properties" "{{ keycloak_master_admin_username }}" "{{ keycloak_master_admin_password }}"  "{{ realm }}" {% if lib.isNginxServer() == "True" %}"{{ ics_web_type }}"{% else %}"{{ ics_service_type }}"{% endif %} {% if keycloak_server_domain != None and keycloak_server_domain != '' %}"https://{{ keycloak_server_domain }}/auth"{% else %}"https://{{ details.get('domain_name') }}/auth"{% endif %} "https://{{ details.get('domain_name') }}/{{ redirect_ics_web }}"    
     - require:
       - file: copy-kcbootstrap-properties-file
 
@@ -56,7 +63,7 @@ create-realm-{{ realm }}:
 {% for realm_user, realm_user_details in details.get('users').items() %}
 create-realm-{{ realm }}-user-{{ realm_user }}:
   cmd.run:
-    - name: {{ java_create_user_command }} "{{ lib.keycloak_bin_folder }}/kcbootstrap.properties" "{{ realm }}" "{{ realm_user }}" "{{ realm_user_details.get('password') }}" "{{ realm_user_details.get('first_name') }}" "{{ realm_user_details.get('last_name') }}" "{{ realm_user_details.get('role') }}"
+    - name: {{ java_create_user_command }} "{{ lib.keycloak_bin_folder }}/kcbootstrap.properties" "{{ keycloak_master_admin_username }}" "{{ keycloak_master_admin_password }}" "{{ realm }}" "{{ realm_user }}" "{{ realm_user_details.get('password') }}" "{{ realm_user_details.get('first_name') }}" "{{ realm_user_details.get('last_name') }}" "{{ realm_user_details.get('role') }}"
 {% endfor %}
 {% endif %}
 
