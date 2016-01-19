@@ -20,7 +20,8 @@ base:
 #    - server-init
 #    - java8
 {% if setup_keycloak_realm == 'True' %}
-    - keycloak-setup-realm
+#    - keycloak-setup-realm
+    - hello    
 {% endif %}
 #    - hello    
 
