@@ -44,7 +44,7 @@ echo-{{ realm }}-content_server_doamin_name:
     - name: echo "content_server_doamin_name - {{ details.get('content_server_doamin_name') }}"    
 {% endfor %}
 
-display-ke-admin-login
+display-ke-admin-login:
   cmd.run:
     - name: echo "setup_keycloak_realm={{ setup_keycloak_realm }}, force_reload_keycloak_config={{ force_reload_keycloak_config }}, kc_master_admin_username={{ kc_master_admin_username }}, kc_master_admin_password={{ kc_master_admin_password }}"
 
