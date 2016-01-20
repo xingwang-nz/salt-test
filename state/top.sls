@@ -19,8 +19,8 @@ base:
     - create-user-accounts    
 #    - server-init
 #    - java8
-#    - keycloak-setup-realm
-    - hello    
+    - keycloak-setup-realm
+#    - hello    
 #    - hello    
 
   'server_role:keycloak-server':

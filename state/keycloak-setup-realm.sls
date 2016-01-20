@@ -26,7 +26,7 @@
 {% set java_create_realm_command = 'java -cp ' + lib.keycloak_bin_folder + '/' + lib.keycloak_bootstrap_jar + ' com.invenco.ics.keycloak.main.KeycloakCreateClientLauncher' %}
 {% set java_create_user_command = 'java -cp ' + lib.keycloak_bin_folder + '/' + lib.keycloak_bootstrap_jar + ' com.invenco.ics.keycloak.main.KeycloakCreateUserLauncher' %}
 
-{% if lib.isNginxServer() == "True" or lib.isTmsServer() == "True" %}
+{% if setup_keycloak_realm == 'True' and (lib.isNginxServer() == "True" or lib.isTmsServer() == "True") %}
 include:
   - keycloak-bootstrap-jar
 
