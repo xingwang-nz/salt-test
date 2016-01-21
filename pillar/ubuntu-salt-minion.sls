@@ -1,6 +1,6 @@
 realms:
   demo:
-    domain_name: 172.25.125.24
+    domain_name: 172.25.120.1
     content_server_doamin_name: 172.25.125.24
     users:
       testuser1:
@@ -10,14 +10,10 @@ realms:
         role: CONFIG_ADMIN
 
   demo2:
-    domain_name: 172.25.125.24
+    domain_name: 172.25.120.1
     content_server_doamin_name: 172.25.125.24
     users:
-      testuser1:
-        password: Password1
-        first_name: Xing2
-        last_name: Wang2
-        role: CONFIG_ADMIN
+
 
 #  TestRealmOne:
 #    domain_name: invenco-nz-stage.tms.invenco.com
@@ -50,7 +46,7 @@ ec2_server:
       is_sudo: True
       
 tms_db:
-  host: 172.25.110.97
+  host: 172.25.110.12
   port: 5432
   dbname: tms_server_db
   keycloak_dbname: keycloak
