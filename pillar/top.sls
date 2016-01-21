@@ -7,10 +7,10 @@ base:
     - ubuntu-salt-minion
 
 
-dev:
+#dev:
 #  '*':
 #    - server-common
-  'ubuntu-logstash':
-    - match: list
+#  'ubuntu-logstash':
+#    - match: list
     - server-common
     - ubuntu-logstash         
