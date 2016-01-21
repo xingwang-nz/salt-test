@@ -9,10 +9,10 @@ realms:
         last_name: Wang
         role: CONFIG_ADMIN
 
-  demo2:
-    domain_name: 172.25.120.1
-    content_server_doamin_name: 172.25.125.24
-    users:
+#  demo2:
+#    domain_name: 172.25.120.1
+#    content_server_doamin_name: 172.25.125.24
+#    users:
 
 
 #  TestRealmOne:
