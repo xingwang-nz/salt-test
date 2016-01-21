@@ -40,7 +40,6 @@ ec2_server:
   # tomcat server private host-names(IPs) in AWS, these will be used in nginx load balancer
   tomcat_server_hosts:
     - 172.25.110.12
-    - 172.25.110.13
   
   user_accounts:
     xing:
