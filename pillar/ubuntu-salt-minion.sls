@@ -35,7 +35,7 @@ ec2_server:
   time_zone: Pacific/Auckland
   tms_server_domain_name: invenco-nz-stage.tms.invenco.com
   
-  content_server_domain_name: 172.25.110.12
+  content_server_domain_name: 172.25.120.1
   
   # tomcat server private host-names(IPs) in AWS, these will be used in nginx load balancer
   tomcat_server_hosts:
