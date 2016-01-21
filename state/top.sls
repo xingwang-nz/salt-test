@@ -16,10 +16,10 @@ base:
     
   'server_role:nginx-server':
     - match: grain
-    - create-user-accounts    
-#    - server-init
+#    - create-user-accounts    
+    - server-init
 #    - java8
-    - keycloak-setup-realm
+#    - keycloak-setup-realm
 #    - hello    
 #    - hello    
 
