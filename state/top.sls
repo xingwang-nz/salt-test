@@ -39,10 +39,10 @@ base:
 #    - server-init
 #    - hello
     
-dev:
-  'server_role:logstash-server':
-    - match: grain
+#dev:
+#  'server_role:logstash-server':
+#    - match: grain
 #    - create-user-accounts    
 #    - server-init
 #    - api-doc
-    - hello 
+#    - hello 
