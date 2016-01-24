@@ -1,9 +1,9 @@
 base:
-#  '*':
-#    - server-common
+  '*':
+    - server-common
   'ubuntu-salt-minion-1,ubuntu-nginx,ubuntu-keycloak':
     - match: list
-    - server-common  
+#    - server-common  
     - ubuntu-salt-minion
 
 
