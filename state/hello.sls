@@ -22,9 +22,9 @@
 
 
 
-#echo-hello-pillar:
-#  cmd.run:
-#    - name: echo "{{ salt['pillar.get']('hello_message') }}"
+echo-hello-pillar:
+  cmd.run:
+    - name: echo "{{ salt['pillar.get']('hello_message') }}"
 
 #echo-hello-state:
 #  cmd.run:
