@@ -15,7 +15,9 @@ fileserver_backend:
   - roots
   - git
 
-gitfs_provider: GitPython
+#gitfs_provider: GitPython
+gitfs_provider: gitpython
+
 
 gitfs_base: master
 
