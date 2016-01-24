@@ -7,8 +7,8 @@ pillar_roots:
 
 #pillar on git
 ext_pillar:
-  - git: master https://xingwang-nz:xingxing1@github.com/xingwang-nz/salt-test root=pillar
-
+  - git: master https://<usename>:<password>@github.com/xingwang-nz/salt-test root=pillar
+#  - git: dev https://<usename>:<password>@github.com/xingwang-nz/salt-test root=pillar
 
 #states on both master local(root) and git
 fileserver_backend:
