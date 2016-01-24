@@ -12,5 +12,5 @@ base:
 #    - server-common
 #  'ubuntu-logstash':
 #    - match: list
-    - server-common
-    - ubuntu-logstash         
+#    - server-common
+#    - ubuntu-logstash         
