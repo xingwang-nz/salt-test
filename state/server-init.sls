@@ -1,7 +1,7 @@
 {% import 'lib.sls' as lib with context %}
 
-include:
-  - server-common
+#include:
+#  - server-common
 {% if lib.isNginxServer() == "True" %}
   - nginx
 #  - rsyslog
