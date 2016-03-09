@@ -24,9 +24,9 @@ base:
 
   'server_role:keycloak-server':
     - match: grain
-    - create-user-accounts
-    - server-init
-    - keycloak-db-init
+#    - create-user-accounts
+#    - server-init
+#    - keycloak-db-init
     - java8
     - wildfly
  
