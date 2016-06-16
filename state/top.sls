@@ -36,7 +36,6 @@ base:
 #    - create-user-accounts
 #    - java7        
 #    - server-init
-#    - hello
     
 #dev:
 #  'server_role:logstash-server':
@@ -44,4 +43,3 @@ base:
 #    - create-user-accounts    
 #    - server-init
 #    - api-doc
-#    - hello 
