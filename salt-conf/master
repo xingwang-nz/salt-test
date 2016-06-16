@@ -14,6 +14,15 @@ ext_pillar:
 fileserver_backend:
   - roots
   - git
+  - s3fs
+
+# s3 file configuration
+s3.location: ap-southeast-2
+s3.buckets:
+  - invenco-dev-ics-cloud-upload
+
+s3.keyid: XXXXX
+s3.key: XXXXX
 
 #gitfs_provider: GitPython
 gitfs_provider: gitpython
