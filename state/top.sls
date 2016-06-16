@@ -18,10 +18,10 @@ base:
     - match: grain
     - create-user-accounts    
 #    - server-init
-    - java8
+#    - java8
 #    - keycloak-setup-realm
 #    - hello    
-
+    - copy-s3
   'server_role:keycloak-server':
     - match: grain
 #    - create-user-accounts
