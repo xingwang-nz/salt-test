@@ -12,7 +12,7 @@ base:
  #   - java7          
  #   - server-init
  #   - tomcat
-    - hello
+#    - hello
     
   'server_role:nginx-server':
     - match: grain
@@ -22,6 +22,7 @@ base:
 #    - keycloak-setup-realm
 #    - hello    
     - copy-s3
+
   'server_role:keycloak-server':
     - match: grain
 #    - create-user-accounts
