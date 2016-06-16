@@ -59,10 +59,19 @@ apply_change() {
         sed -i "s/${mudole_line}.*/$new_module_line/" "$test_env_pillar_file"
 
 
+	
         #move the new war or jar file to git folder and comit the changes
-        if mv "$FILE" "${git_root_folder}/state/deploy"
-                then echo "$FILE moved"                               
-        fi
+        # if mv "$FILE" "${git_root_folder}/state/deploy"
+        #        then echo "$FILE moved"                               
+        # fi
+		
+		# upload file to s3
+		echo "Upload $FILE to S3"
+		aws s3 cp "$FILE" s3://invenco-nz/deploy/${filename}
+		
+		# delete the file
+		echo "delete $FILE"
+		rm -rf  $FILE
    done
 
 #echo "$(date +%x_%r): check war jar files in ${artifact_release_folder}"
