@@ -6,8 +6,8 @@
 {% endif %}
 
 base:
-  'server_role:tms-server':
-    - match: grain
+#  'server_role:tms-server':
+#    - match: grain
  #   - create-user-accounts
  #   - java7          
  #   - server-init
@@ -20,7 +20,6 @@ base:
 #    - server-init
 #    - java8
 #    - keycloak-setup-realm
-#    - hello    
     - copy-s3
 
   'server_role:keycloak-server':
