@@ -19,7 +19,8 @@ fileserver_backend:
 # s3 file configuration
 s3.location: ap-southeast-2
 s3.buckets:
-  - invenco-dev-ics-cloud-upload
+  base:
+    - invenco-nz
 
 s3.keyid: XXXXX
 s3.key: XXXXX
@@ -41,3 +42,5 @@ gitfs_root: state
 file_roots:
   base:
     - /srv/salt/
+    - /var/cache/salt/master/s3cache/base/invenco-nz
+    
