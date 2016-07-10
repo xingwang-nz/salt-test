@@ -9,6 +9,10 @@
 
 
 {% if lib.isNginxServer() == "True" or lib.isLogstashServer() == "True" %}
+add-nginx-ppa-stable:
+  pkgrepo.managed:
+    - ppa: nginx/stable
+    
 #install nginx
 install-nginx:
   pkg.installed:
