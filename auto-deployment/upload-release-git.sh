@@ -66,8 +66,12 @@ apply_change() {
         # fi
 		
 		# upload file to s3
-		echo "Upload $FILE to S3"
-		aws s3 cp "$FILE" s3://invenco-nz/deploy/${filename}
+		echo "Upload $FILE to  s3://invenco-nz/deploy"
+		#aws s3 cp "$FILE" s3://invenco-nz/deploy/${filename}
+		aws s3 --region ap-southeast-2 cp "$FILE" s3://invenco-nz/deploy/${filename}
+		
+        aws s3 --region us-west-2 cp "$FILE" s3://ics-bamboo-builds-us-west-2/${filename}
+		
 		
 		# delete the file
 		echo "delete $FILE"

@@ -8,4 +8,4 @@
 base:
   'server_role:nginx-server':
     - match: grain
-    - copy-s3
+    - nginx-local

@@ -1,0 +1,11 @@
+sudo apt-get install python-pip
+
+#install latest version
+pip install elasticsearch-curator
+
+
+#install latest version
+pip install elasticsearch-curator==3.5.0
+
+
+curator delete indices --older-than 180 --timestring %Y.%m.%d --time-unit days --prefix logstash
